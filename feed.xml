@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://felixnie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://felixnie.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2021-02-16T14:52:25+08:00</updated><id>https://felixnie.github.io/feed.xml</id><title type="html">Felix Nie</title><subtitle>An electrical engineering student focus on woodworking, photography and programming.
+</subtitle><author><name>Felix Nie</name><email>hongtuo.nie@u.nus.edu</email></author><entry><title type="html">Overview</title><link href="https://felixnie.github.io/modules/2020-12-03-an-overview-of-ee5731-visual-computing/" rel="alternate" type="text/html" title="Overview" /><published>2020-12-03T00:00:00+08:00</published><updated>2021-02-10T21:56:16+08:00</updated><id>https://felixnie.github.io/modules/an-overview-of-ee5731-visual-computing</id><content type="html" xml:base="https://felixnie.github.io/modules/2020-12-03-an-overview-of-ee5731-visual-computing/">&lt;p&gt;These years, rapid progressions in Deep Learning have brought enormous improvements to the vision-based applications. DL methods, mainly based on CNN frameworks, are constructed usually by training instead of the domain-specific designing and programming in the traditional CV algorithms. They are easy to build, often achieve better accuracy, and the trained models can be very lightweight. So why do we still need to learn about traditional CV methods?&lt;/p&gt;
+
+&lt;p&gt;Unlike the black box models in machine learning, traditional CV algorithms are more explainable and tunable. They are also more general in some way since the design of the feature extraction process doesn’t rely on any specific image dataset. Therefore, algorithms like SIFT are often used for image stitching and 3D mesh reconstruction, which don’t require any class knowledge.
+In fact, DL can sometimes overkill, while many traditioal CV techniques can also be simplified and implemented on devices like microcontrollers.&lt;/p&gt;
+
+&lt;p&gt;The EE5731 Visual Computing module provides us with knowledge on topics including:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Viola Jones face detection algorithm
+    &lt;ul&gt;
+      &lt;li&gt;Haar-like features&lt;/li&gt;
+      &lt;li&gt;Adaboost&lt;/li&gt;
+      &lt;li&gt;Integral image&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;HOG (Histogram of Oriented Gradients) features&lt;/li&gt;
+  &lt;li&gt;SIFT (Scale Invariant Feature Transform) algorithm
+    &lt;ul&gt;
+      &lt;li&gt;Scale space extrema - DoG (Difference of Gaussian)&lt;/li&gt;
+      &lt;li&gt;Keypoint localization
+        &lt;ul&gt;
+          &lt;li&gt;Contrast threshold&lt;/li&gt;
+          &lt;li&gt;Edge threshold&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Orientation assignment&lt;/li&gt;
+      &lt;li&gt;SIFT descriptor&lt;/li&gt;
+      &lt;li&gt;Homography&lt;/li&gt;
+      &lt;li&gt;RANSAC&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Camera parameters
+    &lt;ul&gt;
+      &lt;li&gt;Forward propagation&lt;/li&gt;
+      &lt;li&gt;Backward propagation&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Depth from stereo&lt;/li&gt;
+  &lt;li&gt;Markov random field&lt;/li&gt;
+  &lt;li&gt;Depth from video&lt;/li&gt;
+  &lt;li&gt;Optical flow&lt;/li&gt;
+  &lt;li&gt;Structure decomposition&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;1-viola-jones-face-detection-algorithm&quot;&gt;1. Viola-Jones Face Detection Algorithm&lt;/h1&gt;
+
+&lt;p&gt;Viola-Jones algorithm is proposed on ICCV 2001 by, of course, Paul Viola and Michael Jones. Details and explanation of this algorithm can be found everywhere, and the module EE5731 also gives you step-by-step instructions. Even so, I would love to review the algorithm again for two proposes: To give a view of CV in 20 years ago, and to share some fun facts about the algorithm.&lt;/p&gt;
+
+&lt;p&gt;First let’s go through the paper.&lt;/p&gt;
+
+&lt;p&gt;Text can be &lt;strong&gt;bold&lt;/strong&gt;, &lt;em&gt;italic&lt;/em&gt;, or &lt;del&gt;strikethrough&lt;/del&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;another-page&quot;&gt;Link to another page&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ul class=&quot;large-only&quot; id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#1-viola-jones-face-detection-algorithm&quot; id=&quot;markdown-toc-1-viola-jones-face-detection-algorithm&quot;&gt;1. Viola-Jones Face Detection Algorithm&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#header-2&quot; id=&quot;markdown-toc-header-2&quot;&gt;Header 2&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#header-3&quot; id=&quot;markdown-toc-header-3&quot;&gt;Header 3&lt;/a&gt;            &lt;ul&gt;
+              &lt;li&gt;&lt;a href=&quot;#header-4&quot; id=&quot;markdown-toc-header-4&quot;&gt;Header 4&lt;/a&gt;                &lt;ul&gt;
+                  &lt;li&gt;&lt;a href=&quot;#header-5&quot; id=&quot;markdown-toc-header-5&quot;&gt;Header 5&lt;/a&gt;                    &lt;ul&gt;
+                      &lt;li&gt;&lt;a href=&quot;#header-6&quot; id=&quot;markdown-toc-header-6&quot;&gt;Header 6&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                  &lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#theres-a-horizontal-rule-below-this&quot; id=&quot;markdown-toc-theres-a-horizontal-rule-below-this&quot;&gt;There’s a horizontal rule below this.&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#here-is-an-unordered-list&quot; id=&quot;markdown-toc-here-is-an-unordered-list&quot;&gt;Here is an unordered list:&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#and-an-ordered-list&quot; id=&quot;markdown-toc-and-an-ordered-list&quot;&gt;And an ordered list:&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#and-a-nested-list&quot; id=&quot;markdown-toc-and-a-nested-list&quot;&gt;And a nested list:&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#small-image&quot; id=&quot;markdown-toc-small-image&quot;&gt;Small image&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#large-image&quot; id=&quot;markdown-toc-large-image&quot;&gt;Large image&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#definition-lists&quot; id=&quot;markdown-toc-definition-lists&quot;&gt;Definition lists&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;header-2&quot;&gt;Header 2&lt;/h2&gt;
+
+&lt;p&gt;This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.&lt;/p&gt;
+
+&lt;h3 id=&quot;header-3&quot;&gt;Header 3&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This is a blockquote following a header.&lt;/p&gt;
+
+  &lt;p&gt;When something is important enough, you do it even if the odds are not in your favor.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Javascript code with syntax highlighting.&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;lang&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;dateformat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i18n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;./lang/&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Ruby code with syntax highlighting&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;GitHubPages&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Dependencies&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;gems&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;add_dependency&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;= &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;header-4&quot;&gt;Header 4&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;This is an unordered list following a header.&lt;/li&gt;
+  &lt;li&gt;This is an unordered list following a header.&lt;/li&gt;
+  &lt;li&gt;This is an unordered list following a header.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;header-5&quot;&gt;Header 5&lt;/h5&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;This is an ordered list following a header.&lt;/li&gt;
+  &lt;li&gt;This is an ordered list following a header.&lt;/li&gt;
+  &lt;li&gt;This is an ordered list following a header.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h6 id=&quot;header-6&quot;&gt;Header 6&lt;/h6&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;head1&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;head two&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;three&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;ok&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;good swedish fish&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;nice&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;out of stock&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;good and plenty&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;nice&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;ok&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;good &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;oreos&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;hmm&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;ok&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;good &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;zoute&lt;/code&gt; drop&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;yumm&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;theres-a-horizontal-rule-below-this&quot;&gt;There’s a horizontal rule below this.&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;here-is-an-unordered-list&quot;&gt;Here is an unordered list:&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Item foo&lt;/li&gt;
+  &lt;li&gt;Item bar&lt;/li&gt;
+  &lt;li&gt;Item baz&lt;/li&gt;
+  &lt;li&gt;Item zip&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;and-an-ordered-list&quot;&gt;And an ordered list:&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Item one&lt;/li&gt;
+  &lt;li&gt;Item two&lt;/li&gt;
+  &lt;li&gt;Item three&lt;/li&gt;
+  &lt;li&gt;Item four&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;and-a-nested-list&quot;&gt;And a nested list:&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;level 1 item
+    &lt;ul&gt;
+      &lt;li&gt;level 2 item&lt;/li&gt;
+      &lt;li&gt;level 2 item
+        &lt;ul&gt;
+          &lt;li&gt;level 3 item&lt;/li&gt;
+          &lt;li&gt;level 3 item&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;level 1 item
+    &lt;ul&gt;
+      &lt;li&gt;level 2 item&lt;/li&gt;
+      &lt;li&gt;level 2 item&lt;/li&gt;
+      &lt;li&gt;level 2 item&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;level 1 item
+    &lt;ul&gt;
+      &lt;li&gt;level 2 item&lt;/li&gt;
+      &lt;li&gt;level 2 item&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;level 1 item&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;small-image&quot;&gt;Small image&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://assets-cdn.github.com/images/icons/emoji/octocat.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;large-image&quot;&gt;Large image&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://guides.github.com/activities/hello-world/branching.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;definition-lists&quot;&gt;Definition lists&lt;/h3&gt;
+
+&lt;dl&gt;
+  &lt;dt&gt;Name&lt;/dt&gt;
+  &lt;dd&gt;Godzilla&lt;/dd&gt;
+  &lt;dt&gt;Born&lt;/dt&gt;
+  &lt;dd&gt;1952&lt;/dd&gt;
+  &lt;dt&gt;Birthplace&lt;/dt&gt;
+  &lt;dd&gt;Japan&lt;/dd&gt;
+  &lt;dt&gt;Color&lt;/dt&gt;
+  &lt;dd&gt;Green&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this. Or is it?
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;The final element.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Felix Nie</name><email>hongtuo.nie@u.nus.edu</email></author><category term="modules" /><category term="modules" /><summary type="html">These years, rapid progressions in Deep Learning have brought enormous improvements to the vision-based applications. DL methods, mainly based on CNN frameworks, are constructed usually by training instead of the domain-specific designing and programming in the traditional CV algorithms. They are easy to build, often achieve better accuracy, and the trained models can be very lightweight. So why do we still need to learn about traditional CV methods?</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://felixnie.github.io/assets/img/img-ee5731/bg.gif" /><media:content medium="image" url="https://felixnie.github.io/assets/img/img-ee5731/bg.gif" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">CV - Robust Real-time Object Detection</title><link href="https://felixnie.github.io/papers/2020-12-03-robust-real-time-object-detection/" rel="alternate" type="text/html" title="CV - Robust Real-time Object Detection" /><published>2020-12-03T00:00:00+08:00</published><updated>2021-02-16T14:51:10+08:00</updated><id>https://felixnie.github.io/papers/robust-real-time-object-detection</id><content type="html" xml:base="https://felixnie.github.io/papers/2020-12-03-robust-real-time-object-detection/">&lt;p&gt;These years, rapid progressions in Deep Learning have brought enormous improvements to the vision-based applications. DL methods, mainly based on CNN frameworks, are constructed usually by training instead of the domain-specific designing and programming in the traditional CV algorithms. They are easy to build, often achieve better accuracy, and the trained models can be very lightweight. So why do we still need to learn about traditional CV methods?&lt;/p&gt;
+
+&lt;p&gt;Unlike the black box models in machine learning, traditional CV algorithms are more explainable and tunable. They are also more general since the design of the feature extraction process doesn’t rely on any specific image dataset. Therefore, algorithms like SIFT are often used for image stitching and 3D mesh reconstruction, which don’t require any class knowledge. In fact, DL can sometimes overkill, while many traditioal CV techniques can also be simplified and implemented on devices like microcontrollers.&lt;/p&gt;
+
+&lt;p&gt;The EE5731 Visual Computing module provides us with knowledge on topics including:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Viola Jones face detection algorithm
+    &lt;ul&gt;
+      &lt;li&gt;Haar-like features&lt;/li&gt;
+      &lt;li&gt;Adaboost&lt;/li&gt;
+      &lt;li&gt;Integral image&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;HOG (Histogram of Oriented Gradients) features&lt;/li&gt;
+  &lt;li&gt;SIFT (Scale Invariant Feature Transform) algorithm
+    &lt;ul&gt;
+      &lt;li&gt;Scale space extrema - DoG (Difference of Gaussian)&lt;/li&gt;
+      &lt;li&gt;Keypoint localization
+        &lt;ul&gt;
+          &lt;li&gt;Contrast threshold&lt;/li&gt;
+          &lt;li&gt;Edge threshold&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Orientation assignment&lt;/li&gt;
+      &lt;li&gt;SIFT descriptor&lt;/li&gt;
+      &lt;li&gt;Homography&lt;/li&gt;
+      &lt;li&gt;RANSAC&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Camera parameters
+    &lt;ul&gt;
+      &lt;li&gt;Forward propagation&lt;/li&gt;
+      &lt;li&gt;Backward propagation&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Depth from stereo&lt;/li&gt;
+  &lt;li&gt;Markov random field&lt;/li&gt;
+  &lt;li&gt;Depth from video&lt;/li&gt;
+  &lt;li&gt;Optical flow&lt;/li&gt;
+  &lt;li&gt;Structure decomposition&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Felix Nie</name><email>hongtuo.nie@u.nus.edu</email></author><category term="papers" /><summary type="html">These years, rapid progressions in Deep Learning have brought enormous improvements to the vision-based applications. DL methods, mainly based on CNN frameworks, are constructed usually by training instead of the domain-specific designing and programming in the traditional CV algorithms. They are easy to build, often achieve better accuracy, and the trained models can be very lightweight. So why do we still need to learn about traditional CV methods?</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://miro.medium.com/max/875/1*yEAd5GgzwVQFDY7X5zpnFQ.jpeg" /><media:content medium="image" url="https://miro.medium.com/max/875/1*yEAd5GgzwVQFDY7X5zpnFQ.jpeg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

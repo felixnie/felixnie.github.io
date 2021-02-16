@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.1 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+<head>
+  
+
+
+
+
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Configuration | Felix Nie</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Configuration" />
+<meta name="author" content="Felix Nie" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="This chapter shows how to quickly setup VScode and run a Python script to control the quadrotors with keyboard." />
+<meta property="og:description" content="This chapter shows how to quickly setup VScode and run a Python script to control the quadrotors with keyboard." />
+<link rel="canonical" href="https://felixnie.github.io/projects/config/" />
+<meta property="og:url" content="https://felixnie.github.io/projects/config/" />
+<meta property="og:site_name" content="Felix Nie" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Configuration" />
+<script type="application/ld+json">
+{"@type":"WebPage","url":"https://felixnie.github.io/projects/config/","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://felixnie.github.io/assets/img/logo.png"},"name":"Felix Nie"},"author":{"@type":"Person","name":"Felix Nie"},"description":"This chapter shows how to quickly setup VScode and run a Python script to control the quadrotors with keyboard.","headline":"Configuration","dateModified":"2021-02-10T21:56:16+08:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Felix Nie">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<meta name="application-name" content="Felix Nie">
+
+
+  <meta name="theme-color" content="rgb(8,46,57)">
+
+
+<meta name="generator" content="Hydejack v9.1.1" />
+
+
+<link rel="alternate" href="https://felixnie.github.io/modules/2020-12-03-an-overview-of-ee5731-visual-computing/" hreflang="en">
+
+<link type="application/atom+xml" rel="alternate" href="https://felixnie.github.io/feed.xml" title="Felix Nie" />
+
+
+<link rel="shortcut icon"    href="/assets/icons/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
+
+<link rel="manifest" href="/assets/site.webmanifest">
+
+
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+
+
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+
+<link rel="preload" href="/assets/img/swipe.svg" as="image" id="_hrefSwipeSVG">
+
+
+  
+  <link rel="dns-prefetch" href="/assets/bower_components/katex/dist/katex.min.css" id="_katexPreload">
+  <noscript><link rel="stylesheet" href="/assets/bower_components/katex/dist/katex.min.css"></noscript>
+
+
+
+
+<link rel="dns-prefetch" href="https://felixnie.disqus.com" id="_hrefDisqus">
+
+
+<script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script");n.src=e,t&&a(n,"load",t,{once:!0});t=c.scripts[0];return t.parentNode.insertBefore(n,t),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2021-02-16T14:52:25+08:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+
+<!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.1.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(38,139,210);--accent-color-faded: rgba(38,139,210,0.5);--accent-color-highlight: rgba(38,139,210,0.1);--accent-color-darkened: #2076b2;--theme-color: rgb(8,46,57)}
+
+</style>
+
+
+<!--<![endif]-->
+
+
+<!--
+Code used for embedding Gumroad on the Hydejack Site. 
+Left here for reference, feel free to delete.
+-->
+<link rel="dns-prefetch" href="https://assets.gumroad.com">
+<script type="module">
+  let p;
+  const promisify = f => x => new Promise(r => f(x).addEventListener('load', r));
+  const loadJS = promisify(window.loadJS);
+  document.querySelector('hy-push-state').addEventListener('load', () => {
+    const io = new IntersectionObserver(async (entries) => {
+      if (entries.some(x => x.isIntersecting)) {
+        p = p || loadJS('https://gumroad.com/js/gumroad-embed.js');
+        await p;
+        if (!window.GumroadEmbed) {
+          await new Promise(function check1(res) {
+            if ('createGumroadEmbed' in window) res(window.createGumroadEmbed());
+            else setTimeout(() => check1(res), 200);
+          });
+        }
+        await new Promise(function check2(res) {
+          if ('GumroadEmbed' in window) res(GumroadEmbed.reload());
+          else setTimeout(() => check2(res), 200);
+        });
+      }
+    }, { rootMargin: '1440px' });
+    document.querySelectorAll('.gumroad-product-embed').forEach(el => io.observe(el));
+  });
+</script>
+<script type="module">
+  let p;
+  const promisify = f => x => new Promise(r => f(x).addEventListener('load', r));
+  const loadJS = promisify(window.loadJS);
+  document.querySelector('hy-push-state').addEventListener('load', () => {
+    const io = new IntersectionObserver(async (entries) => {
+      if (entries.some(x => x.isIntersecting)) {
+        p = p || loadJS('https://gumroad.com/js/gumroad.js');
+        await p;
+        if (!window.GumroadOverlay) {
+          await new Promise(function check(res) {
+            if ('createGumroadOverlay' in window) res(window.createGumroadOverlay());
+            else setTimeout(() => check(res), 200);
+          });
+        }
+      }
+    }, { rootMargin: '300px' });
+    document.querySelectorAll('.gumroad-button').forEach(el => io.observe(el));
+  });
+</script>
+
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-page"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+      
+        <span>/</span>
+        
+        
+        <a href="/projects/">projects</a>
+      
+      </li>
+    
+      <li>
+      
+        <span>/</span>
+        <span>config</span>
+      
+      </li>
+    
+  
+</ul></nav>
+  <article class="page mb6" role="article">
+  <header>
+    <h1 class="page-title">Configuration</h1>
+    
+
+
+
+  
+    <p class="note-sm" >
+      This chapter shows how to quickly setup VScode and run a Python script to control the quadrotors with keyboard.
+
+    </p>
+  
+
+
+  </header>
+
+  <p>The goal is to automatically control a quadrotor to fly at the velocity we want.</p>
+
+<p>First let us recap how to run a flight demo. We need to open 3 terminal windows:</p>
+
+<p>The first one is for launching the outdoor flight demo. Begin with sourcing the bash:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>catkin_ws/
+<span class="nb">source </span>devel/setup.bash
+roslaunch hector_quadrotor_demo outdoor_flight_gazebo.launch
+</code></pre></div></div>
+
+<p>The second one is to enable the motors so that they can be controlled by the controllers (joystick, keyboard, etc.). Also, this should be run after you sourcing the bash:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>catkin_ws/
+<span class="nb">source </span>devel/setup.bash
+rosservice call <span class="se">\e</span>nable_motors <span class="nb">true</span>
+</code></pre></div></div>
+
+<p>The third window is to run the teleop_twist_keyboard so that we can control the quadrotor using keyboard. This package can be installed using apt-get install:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>ros-kinetic-teleop-twist-keyboard
+</code></pre></div></div>
+<p>or just clone from its GitHub repository:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/ros-teleop/teleop_twist_keyboard.git
+</code></pre></div></div>
+<p>You may find there’re only one Python script. Actually, what we can do is just modify the teleop_twist_keyboard.py. By running the package, you’re just running this piece of code:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+</code></pre></div></div>
+
+<h2 id="installing-vscode">Installing VScode</h2>
+
+<p>To debug this Python code, we need to set up a development environment. I tried PyCharm but it cannot run teleop_twist_keyboard.py perfectly. Visual Studio Code then becomes the best choice.
+To install VScode on Ubuntu, please go to https://code.visualstudio.com/Download</p>
+
+<h2 id="about-pythonpath">About PYTHONPATH</h2>
+
+<p>The first thing to do is to identify which Python interpreter are we using to run teleop_twist_keyboard.py. We’re definitely not going to choose a random one, since ROS has installed a bunch of libraries and packages inside the path of the interpreter it uses.</p>
+
+<p>Usually there are three main interpreters that ROS uses. It’s identified by the global variable $PYTHONPATH. We can see the difference before and after you source any ROS workspace:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="nv">$PYTHONPATH</span>
+bash: /opt/ros/kinetic/lib/python2.7/dist-packages: Is a directory
+</code></pre></div></div>
+<p>After sourcing a workspace, like hector_ws:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="nv">$PYTHONPATH</span>
+/home/hongtuo/hector_ws/devel/lib/python2.7/dist-packages:/opt/ros/kinetic/lib/python2.7/dist-packages
+</code></pre></div></div>
+<p>So always keep in mind which Python interpreter is being used!</p>
+
+<p>Here since we need to debug the teleop_twist_keyboard.py file, we need to know which Python environment it’s using. This env will include basic ROS Python packages like roslib. By adding these code we can get the Python path and version info:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    import sys
+    import os
+    print<span class="o">(</span><span class="s1">'This is an experimental version. Modified by Felix Nie.'</span><span class="o">)</span>
+
+    print<span class="o">(</span><span class="s1">'Current Python exec path:'</span><span class="o">)</span>
+    print<span class="o">(</span>sys.executable<span class="o">)</span>
+    print<span class="o">(</span><span class="s2">"Current Python version:"</span><span class="o">)</span>
+    print <span class="o">(</span>sys.version<span class="o">)</span>
+</code></pre></div></div>
+<p>The output is:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hongtuo@t-5810:~/teleop_twist_keyboard<span class="nv">$ </span>python teleop_twist_keyboard.py 
+This is an experimental version. Modified by Felix Nie.
+Current Python <span class="nb">exec </span>path:
+/usr/bin/python
+Current Python version:
+2.7.12 <span class="o">(</span>default, Jul 21 2020, 15:19:50<span class="o">)</span> 
+<span class="o">[</span>GCC 5.4.0 20160609]
+</code></pre></div></div>
+
+<h2 id="setting-up-ide">Setting up IDE</h2>
+
+<p>We need a IDE for convenience. PyCharm seems not to be able to run ioctl related code. Let’s choose VSCode.
+We need to set Python interpreter to <strong>/usr/bin/python</strong> in VSCode.
+Follow this guide to set everything up:
+https://marketplace.visualstudio.com/items?itemName=ms-python.python</p>
+
+<h2 id="understanding-hector_quadrotor">Understanding hector_quadrotor</h2>
+
+<p>There’re several commands we’re going to use frequently in this chapter.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rostopic list <span class="nt">-v</span>
+rostopic <span class="nb">type </span>TOPICNAME
+rosmsg show TYPENAME
+rostopic <span class="nb">echo </span>TOPICNAME
+</code></pre></div></div>
+
+<p><img src="/projects/Screenshot%20from%202020-09-30%2011-21-42.png" alt="Full-width image" class="lead" width="800" height="100" loading="lazy" /></p>
+
+<p>The full list of topic:</p>
+
+<p>Please refer to <a href="/projects/output/" class="heading flip-title">Output</a>.</p>
+
+<p>The full list of <strong>rostopic</strong> and <strong>rosmsg</strong> commands:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	rostopic bw	display bandwidth used by topic
+	rostopic delay	display delay of topic from timestamp <span class="k">in </span>header
+	rostopic <span class="nb">echo	</span>print messages to screen
+	rostopic find	find topics by <span class="nb">type
+	</span>rostopic hz	display publishing rate of topic    
+	rostopic info	print information about active topic
+	rostopic list	list active topics
+	rostopic pub	publish data to topic
+	rostopic <span class="nb">type	</span>print topic or field <span class="nb">type
+
+	</span>rosmsg show	Show message description
+	rosmsg info	Alias <span class="k">for </span>rosmsg show
+	rosmsg list	List all messages
+	rosmsg md5	Display message <span class="nb">md5sum
+	</span>rosmsg package	List messages <span class="k">in </span>a package
+	rosmsg packages	List packages that contain messages
+</code></pre></div></div>
+
+<h2 id="fetching-position-of-a-quadrotor">Fetching position of a quadrotor</h2>
+
+<p>We can fetch the ground truth of a quadrotors’s position and orientation with the commands above, listening to the topic <strong>/ground_truth_to_tf/pose</strong>, of which the type is <strong>geometry_msgs/PoseStamped</strong>. We can take a look at its data structure:</p>
+
+<p><img src="/projects/Screenshot%20from%202020-09-30%2012-08-11.png" alt="Full-width image" class="lead" width="800" height="100" loading="lazy" /></p>
+
+<p>Then we can fetch the position information of a quadrotor by:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rostopic <span class="nb">echo</span> /ground_truth_to_tf/pose
+</code></pre></div></div>
+<p>It will look like this:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>header: 
+  <span class="nb">seq</span>: 93341
+  stamp: 
+    secs: 933
+    nsecs: 421000000
+  frame_id: <span class="s2">"world"</span>
+pose: 
+  position: 
+    x: 6.52369435648
+    y: <span class="nt">-7</span>.9102266541
+    z: 0.266923661311
+  orientation: 
+    x: 0.037585662434
+    y: 0.0017887777765
+    z: <span class="nt">-0</span>.999291794003
+    w: <span class="nt">-0</span>.000169386832415
+<span class="nt">---</span>
+header: 
+  <span class="nb">seq</span>: 93342
+  stamp: 
+    secs: 933
+    nsecs: 431000000
+  frame_id: <span class="s2">"world"</span>
+pose: 
+  position: 
+    x: 6.5236768609
+    y: <span class="nt">-7</span>.91021347608
+    z: 0.266921106179
+  orientation: 
+    x: 0.0376316518711
+    y: 0.00175557932743
+    z: <span class="nt">-0</span>.999290121657
+    w: <span class="nt">-0</span>.000171688159614
+<span class="nt">---</span>
+header: 
+  <span class="nb">seq</span>: 93343
+  stamp: 
+    secs: 933
+    nsecs: 441000000
+  frame_id: <span class="s2">"world"</span>
+pose: 
+  position: 
+    x: 6.52369411247
+    y: <span class="nt">-7</span>.91022759181
+    z: 0.266925983107
+  orientation: 
+    x: 0.0375830424206
+    y: 0.00179585880944
+    z: <span class="nt">-0</span>.999291880182
+    w: <span class="nt">-0</span>.000167381804471
+</code></pre></div></div>
+
+<p>Although the position data with time stamps is already enough for us to derive the velocity of the quadrotor, we cannot continue our work like trajectory design without understanding quaternion - a way for computers to understand orientation. This is totally different from Euler angles and orthogonal matrix.</p>
+
+<p>Please keep reading <a href="/projects/quaternion/" class="heading flip-title">Quaternion</a>.</p>
+
+<h2 id="to-control-with-velocity">To control with velocity</h2>
+
+<p>The basic idea of controlling a quadrotor is based on the feedback of a localization system like OptiTrack. The localization system send the position and orientation to the ground station, then compare with the goal or points on the designed trajectory of the robots to derive the velocity. The velocity is then send to the robot.</p>
+
+<p>If you are doing collision avoidance when the quadrotor is simultaneously controlled by human operator with a joystick, the velocity is the combination of joystick command and the potential field vectors.</p>
+
+<p>In ROS, the joystick signal is represented by the topic <strong>/cmd_vel</strong>, which is a <strong>geometry_msgs/Twist</strong> data. This expresses velocity in free space broken into its linear and angular parts:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>geometry_msgs/Vector3 linear
+geometry_msgs/Vector3 angular
+</code></pre></div></div>
+
+<p>For more information, we need to read the code inside teleop_twist_keyboard.py. (will continue)</p>
+
+
+</article>
+
+
+  <clap-button class="mb6" ></clap-button>
+  
+    <p class="message centered border-radius" >
+      <span style="display:block;margin-bottom:.5rem;">This is a preview of <a href="https://getclaps.app">Clap Button</a>, a new feedback and analytics tools for Hydejack, built by yours truly.</span>
+      <span style="display:block;margin-bottom:.5rem;">You can try it out on <code>localhost</code> for free, but it will be removed (together with this message) when building with <code>JEKYLL_ENV=production</code>.</span>
+      <span style="display:block;margin-bottom:.5rem;">To use Clap Button on your site, get a <a href="https://getclaps.app#pricing">subscription</a><br/>and set <code>clap_button: true</code> in your config file.</span>
+    </p>
+  
+
+
+
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021. Host with ❤ by Felix.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/about/">ABOUT ME</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.1</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(8,46,57);background-image:url(/assets/img/bg-03.jpg)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <img src="/assets/img/logo.png" class="avatar" alt="Felix Nie" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">Felix Nie</h2></a>
+    
+    
+      <p class="">
+        Glad you come.
+
+      </p>
+    
+  </div>
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/posts/"
+          class="sidebar-nav-item "
+          
+        >
+          Blog Posts📰
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/papers/"
+          class="sidebar-nav-item "
+          
+        >
+          Weekly Papers📜
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/modules/"
+          class="sidebar-nav-item "
+          
+        >
+          Modules Memo📝
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projects/"
+          class="sidebar-nav-item "
+          
+        >
+          Projects🚧
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About Me🤣
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://facebook.com/hongtuo.nie" title="Facebook" class="no-mark-external">
+      <span class="icon-facebook"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://instagram.com/ht.nie" title="Instagram" class="no-mark-external">
+      <span class="icon-instagram"></span>
+      <span class="sr-only">Instagram</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/felixnie" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:hongtuo.nie@u.nus.edu" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.1.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.1.js" nomodule defer></script>
+  
+
+  
+  <script>!function(w, d) {
+    w.ga=w.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+
+    /**/
+      if (navigator.CookiesOK) {
+        ga('create', 'UA-45796218-1', 'auto');
+      } else if (d.cookie.indexOf("hy--cookies-ok=true") > -1) {
+        ga('create', 'UA-45796218-1', {
+          'storage': 'none',
+          'clientId': localStorage ? localStorage.getItem('ga--client-id') : undefined
+        });
+      } else {
+        ga('create', 'UA-45796218-1', {
+          'storage': 'none'
+        });
+        ga('set', 'forceSSL', true);
+        ga('set', 'anonymizeIp', true);
+      }
+    /**/
+
+    var pushStateEl = d.getElementById('_pushState');
+    var timeoutId;
+    pushStateEl.addEventListener('hy-push-state-load', function() {
+      w.clearTimeout(timeoutId);
+      timeoutId = w.setTimeout(function() {
+        ga('set', 'page', w.location.pathname);
+        ga('send', 'pageview');
+      }, 500);
+    });
+
+    d.addEventListener('hy--cookies-ok', function () {
+      w.ga(function(tracker) {
+        w.ga("set", "anonymizeIp", undefined);
+        localStorage && localStorage.setItem("ga--client-id", tracker.get("clientId"));
+      });
+    });
+
+    w.loadJSDeferred('https://www.google-analytics.com/analytics.js');
+  }(window, document);</script>
+
+
+<!--<![endif]-->
+  <!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <clap-config>
+    <clap-text at="1">Keep going!</clap-text>
+    <clap-text at="2">Keep going ×2!</clap-text>
+    <clap-text at="3">Give me more!</clap-text>
+    <clap-text at="5">Thank you, thank you</clap-text>
+    <clap-text at="7">Far too kind!</clap-text>
+    <clap-text at="10">Never gonna give me up?</clap-text>
+    <clap-text at="14">Never gonna let me down?</clap-text>
+    <clap-text at="20">Turn around and desert me!</clap-text>
+    <clap-text at="30">You're an addict!</clap-text>
+    <clap-text at="40">Son of a clapper!</clap-text>
+    <clap-text at="50">No way</clap-text>
+    <clap-text at="60">Go back to work!</clap-text>
+    <clap-text at="70">This is getting out of <em>hand</em></clap-text>
+    <clap-text at="80">Unbelievable</clap-text>
+    <clap-text at="90">PREPOSTEROUS</clap-text>
+    <clap-text at="100">I N S A N I T Y</clap-text>
+    <clap-text at="185"><span style="font-family:monospace">FEED ME A STRAY CAT</span></clap-text>
+  </clap-config>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>
