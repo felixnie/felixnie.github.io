@@ -24,7 +24,15 @@ concurrency:
 jobs:
   # Build job
   build:
-    runs-on: ubuntu-latest
+    # copied from https://github.com/ruby/ruby-builder/blob/master/.github/workflows/build.yml
+    if: true
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-20.04, ubuntu-22.04, ubuntu-24.04, macos-13, macos-14 ]
+        ruby: [ruby-3.4.0-rc1]
+    runs-on: ${{ matrix.os }}
+    # runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
