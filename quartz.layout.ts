@@ -9,14 +9,11 @@ export const sharedPageComponents: SharedLayout = {
     Component.Comments({
       provider: 'giscus',
       options: {
-        // from data-repo
         repo: 'felixnie/draftz',
-        // from data-repo-id
         repoId: 'R_kgDONgfauQ',
-        // from data-category
         category: 'Announcements',
-        // from data-category-id
         categoryId: 'DIC_kwDONgfauc4CmKY-',
+        mapping: 'pathname',
       }
     }),
   ],
