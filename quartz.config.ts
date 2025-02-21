@@ -8,15 +8,15 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "🐿️ Draftz 1.0",
+    pageTitle: "🪴 Quartz 4.0",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
-      provider: "umami", host: 'https://umami.felixnie.com', websiteId: 'e9b43ea0-1258-4ca3-9511-d4b63609c97a' 
+      provider: "plausible",
     },
     locale: "en-US",
-    baseUrl: "draftz.felixnie.com",
+    baseUrl: "quartz.jzhao.xyz",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "created",
     generateSocialImages: false,

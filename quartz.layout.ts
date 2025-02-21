@@ -5,22 +5,11 @@ import * as Component from "./quartz/components"
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
-  afterBody: [
-    // Component.Comments({
-    //   provider: 'giscus',
-    //   options: {
-    //     repo: 'felixnie/draftz',
-    //     repoId: 'R_kgDONgfauQ',
-    //     category: 'Announcements',
-    //     categoryId: 'DIC_kwDONgfauc4CmKY-',
-    //     mapping: 'pathname',
-    //   }
-    // }),
-  ],
+  afterBody: [],
   footer: Component.Footer({
     links: {
-      GitHub: "https://github.com/felixnie/draftz",
-      "Home": "https://home.felixnie.com",
+      GitHub: "https://github.com/jackyzha0/quartz",
+      "Discord Community": "https://discord.gg/cRFFHYye7t",
     },
   }),
 }
@@ -38,7 +27,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer()),
+    Component.Explorer(),
   ],
   right: [
     Component.Graph(),
@@ -55,7 +44,7 @@ export const defaultListPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer()),
+    Component.Explorer(),
   ],
   right: [],
 }
