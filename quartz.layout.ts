@@ -46,7 +46,13 @@ export const defaultContentPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.Explorer(),
+    Component.Explorer({
+      filterFn: (node) => {
+        // set containing names of everything you want to filter out
+        const omit = new Set(["tags", "clippings", "being mortal"])
+        return !omit.has(node.name.toLowerCase())
+      },
+    }),
   ],
   right: [
     Component.Graph(),
@@ -63,7 +69,13 @@ export const defaultListPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.Explorer(),
+    Component.Explorer({
+      filterFn: (node) => {
+        // set containing names of everything you want to filter out
+        const omit = new Set(["tags", "clippings", "being mortal"])
+        return !omit.has(node.name.toLowerCase())
+      },
+    }),
   ],
   right: [],
 }
