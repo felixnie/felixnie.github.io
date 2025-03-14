@@ -49,12 +49,35 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Search(),
     Component.Darkmode(),
     Component.Explorer({
+
       // mod: omit pages
       filterFn: (node) => {
         const omit = new Set(["tags", "clippings", "being-mortal"])
-        console.log("[debug - single page - filterFn]", node.name)
         return !omit.has(node.name.toLowerCase())
       },
+
+      // mod: sort by order
+      sortFn: (a, b) => {
+        // 1. access the `order` value from frontmatter
+        const orderA = a.file?.frontmatter?.order as number | undefined; // type assertion
+        const orderB = b.file?.frontmatter?.order as number | undefined;
+    
+        // 2. handle cases where `order` is present on both, neither, or only one of the files
+        if (orderA !== undefined && orderB !== undefined) {
+          // both files have an order, so sort based on that
+          return orderA - orderB;
+        } else if (orderA !== undefined) {
+          // only 'a' has an order, so 'a' should come first
+          return -1;
+        } else if (orderB !== undefined) {
+          // only 'b' has an order, so 'b' should come first
+          return 1;
+        } else {
+          // neither has an order, fall back to alphabetical sorting
+          return a.displayName.localeCompare(b.displayName);
+        }
+      },
+
     }),
   ],
   right: [
@@ -73,12 +96,35 @@ export const defaultListPageLayout: PageLayout = {
     Component.Search(),
     Component.Darkmode(),
     Component.Explorer({
+      
       // mod: omit pages
       filterFn: (node) => {
         const omit = new Set(["tags", "clippings", "being-mortal"])
-        console.log("[debug - list of pages - filterFn]", node.name)
         return !omit.has(node.name.toLowerCase())
       },
+
+      // mod: sort by order
+      sortFn: (a, b) => {
+        // 1. access the `order` value from frontmatter
+        const orderA = a.file?.frontmatter?.order as number | undefined; // type assertion
+        const orderB = b.file?.frontmatter?.order as number | undefined;
+    
+        // 2. handle cases where `order` is present on both, neither, or only one of the files
+        if (orderA !== undefined && orderB !== undefined) {
+          // both files have an order, so sort based on that
+          return orderA - orderB;
+        } else if (orderA !== undefined) {
+          // only 'a' has an order, so 'a' should come first
+          return -1;
+        } else if (orderB !== undefined) {
+          // only 'b' has an order, so 'b' should come first
+          return 1;
+        } else {
+          // neither has an order, fall back to alphabetical sorting
+          return a.displayName.localeCompare(b.displayName);
+        }
+      },
+
     }),
   ],
   right: [],

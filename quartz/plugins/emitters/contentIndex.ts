@@ -118,6 +118,12 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
       const emitted: FilePath[] = []
       const linkIndex: ContentIndex = new Map()
       for (const [tree, file] of content) {
+        
+        // mod: skip files with specific tag while building the search index
+        if (file.data.frontmatter?.tags?.includes("search-exclude")) {
+          continue
+        }
+
         const slug = file.data.slug!
         const date = getDate(ctx.cfg.configuration, file.data) ?? new Date()
         if (opts?.includeEmptyFiles || (file.data.text && file.data.text !== "")) {
