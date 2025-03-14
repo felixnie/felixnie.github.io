@@ -478,6 +478,13 @@ async function fillDocument(data: { [key: FullSlug]: ContentDetails }) {
   let id = 0
   const promises: Array<Promise<unknown>> = []
   for (const [slug, fileData] of Object.entries<ContentDetails>(data)) {
+    // mod: skip files with the "search-exclude" tag
+    console.log("[debug - search - fillDocument]", fileData.title)
+    console.log(fileData.tags)
+    console.log(fileData.tags.includes("search-exclude"))
+    if (fileData.tags.includes("search-exclude")) {
+      continue
+    }
     promises.push(
       index.addAsync(id++, {
         id,
@@ -487,6 +494,7 @@ async function fillDocument(data: { [key: FullSlug]: ContentDetails }) {
         tags: fileData.tags,
       }),
     )
+    console.log(promises.length)
   }
 
   return await Promise.all(promises)

@@ -91,12 +91,26 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     enableRadial,
   } = JSON.parse(graph.dataset["cfg"]!) as D3Config
 
-  const data: Map<SimpleSlug, ContentDetails> = new Map(
+  // const data: Map<SimpleSlug, ContentDetails> = new Map(
+  //   Object.entries<ContentDetails>(await fetchData).map(([k, v]) => [
+  //     simplifySlug(k as FullSlug),
+  //     v,
+  //   ]),
+  // )
+
+  // mod: take out files that have the tag graph-exclude
+  const originalData: Map<SimpleSlug, ContentDetails> = new Map(
     Object.entries<ContentDetails>(await fetchData).map(([k, v]) => [
       simplifySlug(k as FullSlug),
       v,
     ]),
   )
+  const data: Map<SimpleSlug, ContentDetails> = new Map(
+    [...originalData.entries()].filter(([key, value]) => {
+    return !value.tags?.includes("graph-exclude")
+    })
+  )
+
   const links: SimpleLinkData[] = []
   const tags: SimpleSlug[] = []
   const validLinks = new Set(data.keys())

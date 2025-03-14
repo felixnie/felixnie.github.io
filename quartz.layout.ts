@@ -29,6 +29,8 @@ export const sharedPageComponents: SharedLayout = {
       Quartz: "https://github.com/jackyzha0/quartz",
       Homepage: "https://felixnie.com",
       "Control Panel": "https://home.felixnie.com",
+      Status: "https://status.felixnie.com",
+      CV: "https://url.felixnie.com/cv",
     },
   }),
 }
@@ -47,9 +49,10 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Search(),
     Component.Darkmode(),
     Component.Explorer({
+      // mod: omit pages
       filterFn: (node) => {
-        // set containing names of everything you want to filter out
-        const omit = new Set(["tags", "clippings", "being mortal"])
+        const omit = new Set(["tags", "clippings", "being-mortal"])
+        console.log("[debug - single page - filterFn]", node.name)
         return !omit.has(node.name.toLowerCase())
       },
     }),
@@ -70,9 +73,10 @@ export const defaultListPageLayout: PageLayout = {
     Component.Search(),
     Component.Darkmode(),
     Component.Explorer({
+      // mod: omit pages
       filterFn: (node) => {
-        // set containing names of everything you want to filter out
-        const omit = new Set(["tags", "clippings", "being mortal"])
+        const omit = new Set(["tags", "clippings", "being-mortal"])
+        console.log("[debug - list of pages - filterFn]", node.name)
         return !omit.has(node.name.toLowerCase())
       },
     }),
