@@ -98,7 +98,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
   //   ]),
   // )
 
-  // mod: take out files that have the tag graph-exclude
+  // mod: take out files that have the tag exclusive
   const originalData: Map<SimpleSlug, ContentDetails> = new Map(
     Object.entries<ContentDetails>(await fetchData).map(([k, v]) => [
       simplifySlug(k as FullSlug),
@@ -107,7 +107,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
   )
   const data: Map<SimpleSlug, ContentDetails> = new Map(
     [...originalData.entries()].filter(([key, value]) => {
-    return !value.tags?.includes("graph-exclude")
+    return !value.tags?.includes("exclusive")
     })
   )
 

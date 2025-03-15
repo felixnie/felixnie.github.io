@@ -103,6 +103,23 @@ async function mouseEnterHandler(
 document.addEventListener("nav", () => {
   const links = [...document.getElementsByClassName("internal")] as HTMLAnchorElement[]
   for (const link of links) {
+
+    // mod: skip links with specific tag
+    const targetUrl = new URL(link.href)
+    // fetch content and check frontmatter
+    fetch(targetUrl.toString())
+      .then(res => res.text())
+      .then(content => {
+        const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---/)
+        if (frontmatterMatch) {
+          const frontmatter = frontmatterMatch[1]
+          if (frontmatter.includes('tags:') && frontmatter.includes('exclusive')) {
+            link.dataset.noPopover = "true"
+          }
+        }
+      })
+      .catch(err => console.error(err))
+
     link.addEventListener("mouseenter", mouseEnterHandler)
     window.addCleanup(() => link.removeEventListener("mouseenter", mouseEnterHandler))
   }

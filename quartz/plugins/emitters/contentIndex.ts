@@ -120,7 +120,7 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
       for (const [tree, file] of content) {
         
         // mod: skip files with specific tag while building the search index
-        if (file.data.frontmatter?.tags?.includes("search-exclude")) {
+        if (file.data.frontmatter?.tags?.includes("exclusive")) {
           continue
         }
 

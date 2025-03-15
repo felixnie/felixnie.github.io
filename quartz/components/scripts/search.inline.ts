@@ -487,7 +487,6 @@ async function fillDocument(data: { [key: FullSlug]: ContentDetails }) {
         tags: fileData.tags,
       }),
     )
-    console.log(promises.length)
   }
 
   return await Promise.all(promises)
