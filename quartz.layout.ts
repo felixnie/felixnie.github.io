@@ -1,6 +1,37 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 
+// mod: Explorer functions
+import { Options } from "./quartz/components/ExplorerNode"
+ 
+export const mapFn: Options["mapFn"] = (node) => {
+  return node
+}
+export const filterFn: Options["filterFn"] = (node) => {
+  const omit = new Set(["tags", "clippings", "being-mortal"])
+  return !omit.has(node.name.toLowerCase())
+}
+export const sortFn: Options["sortFn"] = (a, b) => {
+  // 1. access the `order` value from frontmatter
+  const orderA = a.file?.frontmatter?.order as number | undefined;
+  const orderB = b.file?.frontmatter?.order as number | undefined;
+
+  // 2. handle cases where `order` is present on both, neither, or only one of the files
+  if (orderA !== undefined && orderB !== undefined) {
+    // both files have an order, so sort based on that
+    return orderA - orderB;
+  } else if (orderA !== undefined) {
+    // only 'a' has an order, so 'a' should come first
+    return -1;
+  } else if (orderB !== undefined) {
+    // only 'b' has an order, so 'b' should come first
+    return 1;
+  } else {
+    // neither has an order, fall back to alphabetical sorting
+    return a.displayName.localeCompare(b.displayName);
+  }
+}
+
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
@@ -49,35 +80,9 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Search(),
     Component.Darkmode(),
     Component.Explorer({
-
-      // mod: omit pages
-      filterFn: (node) => {
-        const omit = new Set(["tags", "clippings", "being-mortal"])
-        return !omit.has(node.name.toLowerCase())
-      },
-
-      // mod: sort by order
-      sortFn: (a, b) => {
-        // 1. access the `order` value from frontmatter
-        const orderA = a.file?.frontmatter?.order as number | undefined; // type assertion
-        const orderB = b.file?.frontmatter?.order as number | undefined;
-    
-        // 2. handle cases where `order` is present on both, neither, or only one of the files
-        if (orderA !== undefined && orderB !== undefined) {
-          // both files have an order, so sort based on that
-          return orderA - orderB;
-        } else if (orderA !== undefined) {
-          // only 'a' has an order, so 'a' should come first
-          return -1;
-        } else if (orderB !== undefined) {
-          // only 'b' has an order, so 'b' should come first
-          return 1;
-        } else {
-          // neither has an order, fall back to alphabetical sorting
-          return a.displayName.localeCompare(b.displayName);
-        }
-      },
-
+      mapFn,
+      filterFn,
+      sortFn,
     }),
   ],
   right: [
@@ -96,35 +101,9 @@ export const defaultListPageLayout: PageLayout = {
     Component.Search(),
     Component.Darkmode(),
     Component.Explorer({
-      
-      // mod: omit pages
-      filterFn: (node) => {
-        const omit = new Set(["tags", "clippings", "being-mortal"])
-        return !omit.has(node.name.toLowerCase())
-      },
-
-      // mod: sort by order
-      sortFn: (a, b) => {
-        // 1. access the `order` value from frontmatter
-        const orderA = a.file?.frontmatter?.order as number | undefined; // type assertion
-        const orderB = b.file?.frontmatter?.order as number | undefined;
-    
-        // 2. handle cases where `order` is present on both, neither, or only one of the files
-        if (orderA !== undefined && orderB !== undefined) {
-          // both files have an order, so sort based on that
-          return orderA - orderB;
-        } else if (orderA !== undefined) {
-          // only 'a' has an order, so 'a' should come first
-          return -1;
-        } else if (orderB !== undefined) {
-          // only 'b' has an order, so 'b' should come first
-          return 1;
-        } else {
-          // neither has an order, fall back to alphabetical sorting
-          return a.displayName.localeCompare(b.displayName);
-        }
-      },
-
+      mapFn,
+      filterFn,
+      sortFn,
     }),
   ],
   right: [],
