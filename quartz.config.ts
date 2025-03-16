@@ -23,9 +23,13 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        title: "Playwrite HU", // mod: add title font 
+        // mod: add title font
+        title: {
+          name: "Roboto", 
+          // weights: [700],
+        },
         header: "Schibsted Grotesk",
-        body: "Anonymous Pro", // "Source Sans Pro",
+        body: "Source Sans Pro",
         code: "IBM Plex Mono",
       },
       colors: {
