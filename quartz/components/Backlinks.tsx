@@ -26,7 +26,7 @@ export default ((opts?: Partial<BacklinksOptions>) => {
     const slug = simplifySlug(fileData.slug!)
     const backlinkFiles = allFiles.filter((file) => 
       file.links?.includes(slug) && 
-      // mod: skip files with specific tag
+      // mod: skip files with tag 'exclusive' in Backlinks
       !file.frontmatter?.tags?.includes("exclusive")
     )
     if (options.hideWhenEmpty && backlinkFiles.length == 0) {

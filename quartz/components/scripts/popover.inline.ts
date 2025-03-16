@@ -106,7 +106,7 @@ document.addEventListener("nav", () => {
   const links = [...document.getElementsByClassName("internal")] as HTMLAnchorElement[]
   for (const link of links) {
 
-    // mod: skip links with specific tag
+    // mod: skip files with tag 'exclusive' when showing popover
     const targetUrl = new URL(link.href)
     // fetch content and check frontmatter
     fetch(targetUrl.toString())

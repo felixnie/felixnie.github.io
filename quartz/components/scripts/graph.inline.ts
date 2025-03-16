@@ -96,7 +96,7 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
   //   ]),
   // )
 
-  // mod: take out files that have the tag exclusive
+  // mod: skip files with tag 'exclusive' in Graph views
   const originalData: Map<SimpleSlug, ContentDetails> = new Map(
     Object.entries<ContentDetails>(await fetchData).map(([k, v]) => [
       simplifySlug(k as FullSlug),

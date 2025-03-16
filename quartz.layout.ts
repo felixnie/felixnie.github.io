@@ -1,33 +1,44 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 
-// mod: Explorer functions
-import { Options } from "./quartz/components/ExplorerNode"
+// mod: define Explorer functions
+import { Options } from "./quartz/components/Explorer"
  
 export const mapFn: Options["mapFn"] = (node) => {
   return node
 }
 export const filterFn: Options["filterFn"] = (node) => {
-  const omit = new Set(["tags", "clippings", "being-mortal"])
-  return !omit.has(node.name.toLowerCase())
+  // mod: debug
+  // console.log(node.data?.title)
+  // console.log(node.slugSegment)
+  // console.log(node.slug)
+  // console.log(node.data?.frontmatter?.order)
+
+  // mod: items filtered out at indexing stage won't appear now
+  //      edit rules in contentIndex
+  //      fall back to default filter
+  return node.slugSegment !== "tags"
+
+  // mod: old way of filtering, based on:
+  //      node.data?.title - "being mortal"
+  //      node.slugSegment - "being-mortal"
+  //      seems it cannot filter out folder, e.g., "Clippings"
+  const omit = new Set(["tags", "clippings", "being mortal"])
+  return !omit.has((node.data?.title ?? "").toLowerCase())
 }
 export const sortFn: Options["sortFn"] = (a, b) => {
-  // 1. access the `order` value from frontmatter
-  const orderA = a.file?.frontmatter?.order as number | undefined;
-  const orderB = b.file?.frontmatter?.order as number | undefined;
+  // mod: find ways to retrieve order from frontmatter
+  //      need to include frontmatter in ContentDetails and linkIndex.set()
+  const orderA = a.data?.frontmatter?.order as number | undefined;
+  const orderB = b.data?.frontmatter?.order as number | undefined;
 
-  // 2. handle cases where `order` is present on both, neither, or only one of the files
   if (orderA !== undefined && orderB !== undefined) {
-    // both files have an order, so sort based on that
     return orderA - orderB;
   } else if (orderA !== undefined) {
-    // only 'a' has an order, so 'a' should come first
     return -1;
   } else if (orderB !== undefined) {
-    // only 'b' has an order, so 'b' should come first
     return 1;
   } else {
-    // neither has an order, fall back to alphabetical sorting
     return a.displayName.localeCompare(b.displayName);
   }
 }
