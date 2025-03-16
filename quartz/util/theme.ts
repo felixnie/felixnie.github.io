@@ -83,13 +83,23 @@ function formatFontSpecification(type: "title" | "header" | "body" | "code", spe
   return spec.name
 }
 
+// export function googleFontHref(theme: Theme) {
+//   const { code, header, body } = theme.typography
+//   const headerFont = formatFontSpecification("header", header)
+//   const bodyFont = formatFontSpecification("body", body)
+//   const codeFont = formatFontSpecification("code", code)
+
+//   return `https://fonts.googleapis.com/css2?family=${bodyFont}&family=${headerFont}&family=${codeFont}&display=swap`
+// }
+
 export function googleFontHref(theme: Theme) {
-  const { code, header, body } = theme.typography
+  const { title, code, header, body } = theme.typography
+  const titleFont = formatFontSpecification("title", title);
   const headerFont = formatFontSpecification("header", header)
   const bodyFont = formatFontSpecification("body", body)
   const codeFont = formatFontSpecification("code", code)
 
-  return `https://fonts.googleapis.com/css2?family=${bodyFont}&family=${headerFont}&family=${codeFont}&display=swap`
+  return `https://fonts.googleapis.com/css2?family=${titleFont}&family=${bodyFont}&family=${headerFont}&family=${codeFont}&display=swap`
 }
 
 export function googleSubFontHref(theme: Theme, text: string): string {
