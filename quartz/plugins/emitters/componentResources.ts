@@ -9,7 +9,7 @@ import styles from "../../styles/custom.scss"
 import popoverStyle from "../../components/styles/popover.scss"
 import { BuildCtx } from "../../util/ctx"
 import { QuartzComponent } from "../../components/types"
-import { googleFontHref, joinStyles, processGoogleFonts } from "../../util/theme"
+import { googleFontHref, googleSubFontHref, joinStyles, processGoogleFonts } from "../../util/theme"
 import { Features, transform } from "lightningcss"
 import { transform as transpile } from "esbuild"
 import { write } from "./helpers"
@@ -215,8 +215,14 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
         // let the user do it themselves in css
       } else if (cfg.theme.fontOrigin === "googleFonts" && !cfg.theme.cdnCaching) {
         // when cdnCaching is true, we link to google fonts in Head.tsx
-        const response = await fetch(googleFontHref(ctx.cfg.configuration.theme))
-        googleFontsStyleSheet = await response.text()
+        const googleFontsResponse = await fetch(googleFontHref(ctx.cfg.configuration.theme))
+        googleFontsStyleSheet = await googleFontsResponse.text()
+
+        // mod: add title font
+        const googleSubFontsResponse = await fetch(googleSubFontHref(ctx.cfg.configuration.theme, ctx.cfg.configuration.pageTitle))
+        const googleSubFontsStyleSheet = await googleSubFontsResponse.text()
+        
+        googleFontsStyleSheet = `${googleFontsStyleSheet}\n${googleSubFontsStyleSheet}`;
 
         if (!cfg.baseUrl) {
           throw new Error(

@@ -25,6 +25,7 @@ export type FontSpecification =
 
 export interface Theme {
   typography: {
+    title: FontSpecification // mod: add title font
     header: FontSpecification
     body: FontSpecification
     code: FontSpecification
@@ -48,7 +49,8 @@ export function getFontSpecificationName(spec: FontSpecification): string {
   return spec.name
 }
 
-function formatFontSpecification(type: "header" | "body" | "code", spec: FontSpecification) {
+// mod: add title font 
+function formatFontSpecification(type: "title" | "header" | "body" | "code", spec: FontSpecification) {
   if (typeof spec === "string") {
     spec = { name: spec }
   }
@@ -88,6 +90,13 @@ export function googleFontHref(theme: Theme) {
   const codeFont = formatFontSpecification("code", code)
 
   return `https://fonts.googleapis.com/css2?family=${bodyFont}&family=${headerFont}&family=${codeFont}&display=swap`
+}
+
+export function googleSubFontHref(theme: Theme, text: string): string {
+  const { title } = theme.typography;
+  const titleFont = formatFontSpecification("title", title);
+
+  return `https://fonts.googleapis.com/css2?family=${titleFont}&text=${encodeURIComponent(text)}&display=swap`;
 }
 
 export interface GoogleFontFile {
@@ -135,6 +144,7 @@ ${stylesheet.join("\n\n")}
   --highlight: ${theme.colors.lightMode.highlight};
   --textHighlight: ${theme.colors.lightMode.textHighlight};
 
+  --titleFont: "${getFontSpecificationName(theme.typography.title)}", ${DEFAULT_SANS_SERIF};
   --headerFont: "${getFontSpecificationName(theme.typography.header)}", ${DEFAULT_SANS_SERIF};
   --bodyFont: "${getFontSpecificationName(theme.typography.body)}", ${DEFAULT_SANS_SERIF};
   --codeFont: "${getFontSpecificationName(theme.typography.code)}", ${DEFAULT_MONO};
