@@ -24,10 +24,7 @@ const config: QuartzConfig = {
       cdnCaching: true,
       typography: {
         // mod: add title font
-        title: {
-          name: "Roboto", 
-          // weights: [700],
-        },
+        title: "Schibsted Grotesk",
         header: "Schibsted Grotesk",
         body: "Source Sans Pro",
         code: "IBM Plex Mono",
