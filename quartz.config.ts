@@ -24,7 +24,11 @@ const config: QuartzConfig = {
       cdnCaching: true,
       typography: {
         // mod: add title font
-        title: "Playwrite HU", 
+        title: {
+          name: "Playwrite HU",
+          weights: [400, 700],
+          includeItalic: true,
+        }, 
         header: "Schibsted Grotesk", 
         body: "Source Sans Pro", 
         code: "Anonymous Pro", 
