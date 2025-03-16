@@ -13,10 +13,13 @@ const PageTitle: QuartzComponent = ({ fileData, cfg, displayClass }: QuartzCompo
   )
 }
 
+// mod: to be different from headerFont
 PageTitle.css = `
 .page-title {
   font-size: 1.75rem;
   margin: 0;
+
+  font-family: "Script", cursive;
 }
 `
 

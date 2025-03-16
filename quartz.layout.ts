@@ -91,6 +91,9 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Search(),
     Component.Darkmode(),
     Component.Explorer({
+      folderDefaultState: "open",
+      folderClickBehavior: "collapse",
+      useSavedState: false,
       mapFn,
       filterFn,
       sortFn,
@@ -112,6 +115,9 @@ export const defaultListPageLayout: PageLayout = {
     Component.Search(),
     Component.Darkmode(),
     Component.Explorer({
+      folderDefaultState: "open",
+      folderClickBehavior: "collapse",
+      useSavedState: false,
       mapFn,
       filterFn,
       sortFn,

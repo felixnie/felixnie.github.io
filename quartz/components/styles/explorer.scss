@@ -52,6 +52,8 @@
     overflow: hidden;
     flex-shrink: 0;
     align-self: flex-start;
+    // mod: fix misaligned explorer toggle on mobile
+    margin: auto;
   }
 
   button.mobile-explorer {
@@ -278,3 +280,14 @@ html:has(.no-scroll) {
     overflow: auto !important;
   }
 }
+
+// #quartz-body > div.left.sidebar {
+//     display: flex;
+//     align-items: center;
+//     height: 100px;
+// }
+
+// button.explorer-toggle {
+//     display: flex;
+//     align-items: center;
+// }
