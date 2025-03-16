@@ -24,7 +24,7 @@ const config: QuartzConfig = {
       cdnCaching: true,
       typography: {
         // mod: add title font
-        title: "Source Sans Pro",
+        title: "Anonymous Pro",
         header: "Schibsted Grotesk",
         body: "IBM Plex Mono",
         code: "Source Sans Pro",
