@@ -2,6 +2,7 @@ import { pathToRoot } from "../util/path"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { classNames } from "../util/lang"
 import { i18n } from "../i18n"
+import { title } from "node:process"
 
 const PageTitle: QuartzComponent = ({ fileData, cfg, displayClass }: QuartzComponentProps) => {
   const title = cfg?.pageTitle ?? i18n(cfg.locale).propertyDefaults.title
@@ -13,12 +14,14 @@ const PageTitle: QuartzComponent = ({ fileData, cfg, displayClass }: QuartzCompo
   )
 }
 
+// console.log()
+
 // mod: add title font
 PageTitle.css = `
 .page-title {
   font-size: 1.75rem;
   margin: 0;
-  font-family: var(--headerFont);
+  // font-family: var(--titleFont);
 }
 `
 
