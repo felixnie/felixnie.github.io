@@ -24,10 +24,10 @@ const config: QuartzConfig = {
       cdnCaching: true,
       typography: {
         // mod: add title font
-        title: "Schibsted Grotesk",
+        title: "Source Sans Pro",
         header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
-        code: "IBM Plex Mono",
+        body: "IBM Plex Mono",
+        code: "Source Sans Pro",
       },
       colors: {
         lightMode: {
