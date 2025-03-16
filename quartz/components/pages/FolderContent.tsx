@@ -72,7 +72,7 @@ export default ((opts?: Partial<FolderContentOptions>) => {
           if (node.isFolder && options.showSubfolders) {
 
             // mod: stop showing any folder
-            // return undefined
+            return undefined
 
             // folders that dont have data need synthetic files
             const getMostRecentDates = (): QuartzPluginData["dates"] => {
