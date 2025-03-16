@@ -25,7 +25,7 @@ const config: QuartzConfig = {
       typography: {
         title: "Playwrite HU", // mod: add title font 
         header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
+        body: "Anonymous Pro", // "Source Sans Pro",
         code: "IBM Plex Mono",
       },
       colors: {
