@@ -25,7 +25,7 @@ export type FontSpecification =
 
 export interface Theme {
   typography: {
-    title: FontSpecification // mod: add title font
+    title: FontSpecification | undefined
     header: FontSpecification
     body: FontSpecification
     code: FontSpecification
@@ -85,17 +85,24 @@ function formatFontSpecification(type: FontType, spec: FontSpecification) {
   return spec.name
 }
 
-export function googleFontHref(theme: Theme, types: FontType[], text?: string): string {
-  const fontSpecifications = types.map((type) => {
-    const spec = theme.typography[type];
-    return formatFontSpecification(type, spec);
-  });
-  const fontParam = `&family=${fontSpecifications.join("&family=")}`;
+export function googleFontHref(theme: Theme, text: string): string[] {
+  const { header, body, code } = theme.typography
+  const title = theme.typography.title || header
 
-  const textSet = text ? Array.from(new Set(text)).join("") : "";
-  const textParam = textSet ? `&text=${encodeURIComponent(textSet)}` : "";
+  const titleFont = formatFontSpecification("title", title)
+  const headerFont = formatFontSpecification("header", header)
+  const bodyFont = formatFontSpecification("body", body)
+  const codeFont = formatFontSpecification("code", code)
 
-  return `https://fonts.googleapis.com/css2?display=swap${fontParam}${textParam}`;
+  let hrefs = [
+    `https://fonts.googleapis.com/css2?family=${headerFont}&family=${bodyFont}&family=${codeFont}&display=swap`,
+  ]
+
+  if (titleFont !== headerFont) {
+    hrefs.push(`https://fonts.googleapis.com/css2?family=${titleFont}&text=${encodeURIComponent(text)}&display=swap`)
+  }
+
+  return hrefs
 }
 
 export interface GoogleFontFile {
@@ -143,7 +150,7 @@ ${stylesheet.join("\n\n")}
   --highlight: ${theme.colors.lightMode.highlight};
   --textHighlight: ${theme.colors.lightMode.textHighlight};
 
-  --titleFont: "${getFontSpecificationName(theme.typography.title)}", ${DEFAULT_SANS_SERIF};
+  --titleFont: "${getFontSpecificationName(theme.typography.title || theme.typography.header)}", ${DEFAULT_SANS_SERIF};
   --headerFont: "${getFontSpecificationName(theme.typography.header)}", ${DEFAULT_SANS_SERIF};
   --bodyFont: "${getFontSpecificationName(theme.typography.body)}", ${DEFAULT_SANS_SERIF};
   --codeFont: "${getFontSpecificationName(theme.typography.code)}", ${DEFAULT_MONO};

@@ -214,16 +214,12 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
       if (cfg.theme.fontOrigin === "local") {
         // let the user do it themselves in css
       } else if (cfg.theme.fontOrigin === "googleFonts" && !cfg.theme.cdnCaching) {
-        // when cdnCaching is true, we link to google fonts in Head.tsx
-        const theme = ctx.cfg.configuration.theme
-        const fontsResponse = await fetch(googleFontHref(theme, ["header", "body", "code"]))
-        googleFontsStyleSheet = await fontsResponse.text()
+        // When cdnCaching is true, we link to google fonts in Head.tsx
+        const fontUrls = googleFontHref(ctx.cfg.configuration.theme, ctx.cfg.configuration.pageTitle)
+        const fontResponses = await Promise.all(fontUrls.map(url => fetch(url)))
+        const fontStyleSheets = await Promise.all(fontResponses.map(res => res.text()))
 
-        const text = ctx.cfg.configuration.pageTitle
-        const fontSubsetResponse = await fetch(googleFontHref(theme, ["title"], text))
-        const googleFontSubsetStyleSheet = await fontSubsetResponse.text()
-        
-        googleFontsStyleSheet = `${googleFontsStyleSheet}\n${googleFontSubsetStyleSheet}`;
+        googleFontsStyleSheet = fontStyleSheets.join('\n')
 
         if (!cfg.baseUrl) {
           throw new Error(

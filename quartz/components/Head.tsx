@@ -44,8 +44,9 @@ export default (() => {
           <>
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link rel="preconnect" href="https://fonts.gstatic.com" />
-            <link rel="stylesheet" href={googleFontHref(cfg.theme, ['header', 'body', 'code'])} />
-            <link rel="stylesheet" href={googleFontHref(cfg.theme, ['title'], cfg.pageTitle)} />
+            {(googleFontHref(cfg.theme, cfg.pageTitle) as string[]).map((href: string) => (
+              <link rel="stylesheet" href={href} />
+            ))}
           </>
         )}
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
