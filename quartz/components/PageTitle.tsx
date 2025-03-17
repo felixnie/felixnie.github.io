@@ -22,6 +22,7 @@ PageTitle.css = `
   font-size: 1.75rem;
   margin: 0;
   font-family: var(--titleFont);
+  font-weight: 400;
 }
 `
 
