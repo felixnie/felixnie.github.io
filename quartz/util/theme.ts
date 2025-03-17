@@ -98,7 +98,7 @@ export function googleFontHref(theme: Theme, text: string): string[] {
     `https://fonts.googleapis.com/css2?family=${headerFont}&family=${bodyFont}&family=${codeFont}&display=swap`,
   ]
 
-  if (titleFont !== headerFont) {
+  if (titleFont !== headerFont && titleFont !== bodyFont && titleFont !== codeFont) {
     hrefs.push(`https://fonts.googleapis.com/css2?family=${titleFont}&text=${encodeURIComponent(text)}&display=swap`)
   }
 
