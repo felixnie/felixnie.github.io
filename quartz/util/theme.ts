@@ -25,7 +25,7 @@ export type FontSpecification =
 
 export interface Theme {
   typography: {
-    title: FontSpecification | undefined
+    title?: FontSpecification
     header: FontSpecification
     body: FontSpecification
     code: FontSpecification

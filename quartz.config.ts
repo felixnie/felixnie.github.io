@@ -23,12 +23,7 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        // mod: add title font
-        title: {
-          name: "Playwrite HU",
-          weights: [400, 700],
-          includeItalic: true,
-        }, 
+        title: "Playwrite HU",
         header: "Schibsted Grotesk", 
         body: "Source Sans Pro", 
         code: "Anonymous Pro", 
