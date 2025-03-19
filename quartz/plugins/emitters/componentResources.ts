@@ -221,6 +221,12 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
           googleFontsStyleSheet += `\n${await response.text()}`
         }
 
+        if (theme.typography.title) {
+          const title = ctx.cfg.configuration.pageTitle
+          const response = await fetch(googleFontSubsetHref(theme, title))
+          googleFontsStyleSheet += `\n${await response.text()}`
+        }
+
         if (!cfg.baseUrl) {
           throw new Error(
             "baseUrl must be defined when using Google Fonts without cfg.theme.cdnCaching",
