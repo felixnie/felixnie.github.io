@@ -1,1 +1,1 @@
-Sitemap: https://felixnie.github.io/sitemap.xml
+Sitemap: https://felixnie.com/sitemap.xml
