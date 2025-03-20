@@ -2,17 +2,17 @@
 
 Modified from https://github.com/hydecorp/hydejack-starter-kit
 
-### Install Jekyll and Bundler
+## Install Jekyll and Bundler
 https://jekyllrb.com/docs/installation/ubuntu/
 
-### Hydejack development
+## Hydejack development
 If you want to use the local version of Hydejack, check Gemfile:
 ```
 # gem "jekyll-theme-hydejack", "~> 9.0"
 gem "jekyll-theme-hydejack", path: "../hydejack"
 ```
 
-### Run Hydejack starter kit
+## Run Hydejack starter kit
 ```
 # cd into directory with Gemfile
 bundle install
@@ -30,12 +30,12 @@ JEKYLL_ENV=production bundle exec jekyll build
 # see https://jekyllrb.com/docs/step-by-step/10-deployment/
 ```
 
-### Update Hydejack
+## Update Hydejack
 ```
 bundle update jekyll-theme-hydejack
 ```
 
-### Manually host on GitHub Pages
+## Manually host on GitHub Pages
 ```
 # copy the contents in `_site` to `felixnie.github.io`
 # keep files like CNAME `google2366b5e702dfe483.html`
