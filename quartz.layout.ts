@@ -3,43 +3,77 @@ import * as Component from "./quartz/components"
 
 // mod: define Explorer functions
 import { Options } from "./quartz/components/Explorer"
- 
+
 export const mapFn: Options["mapFn"] = (node) => {
   return node
 }
 export const filterFn: Options["filterFn"] = (node) => {
-  // mod: debug
-  // console.log(node.data?.title)
-  // console.log(node.slugSegment)
-  // console.log(node.slug)
-  // console.log(node.data?.frontmatter?.order)
-
   // mod: items filtered out at indexing stage won't appear now
-  //      edit rules in contentIndex
-  //      fall back to default filter
+  //      edit filter in contentIndex if you want to change rules
   return node.slugSegment !== "tags"
-
-  // mod: old way of filtering, based on:
-  //      node.data?.title - "being mortal"
-  //      node.slugSegment - "being-mortal"
-  //      seems it cannot filter out folder, e.g., "Clippings"
-  const omit = new Set(["tags", "clippings", "being mortal"])
-  return !omit.has((node.data?.title ?? "").toLowerCase())
 }
 export const sortFn: Options["sortFn"] = (a, b) => {
-  // mod: find ways to retrieve order from frontmatter
-  //      need to include frontmatter in ContentDetails and linkIndex.set()
-  const orderA = a.data?.frontmatter?.order as number | undefined;
-  const orderB = b.data?.frontmatter?.order as number | undefined;
+  // mod: sort folders and files based on folder_order and order
+  //      to find ways to retrieve folder_order and order from frontmatter
+  //      we now have to include frontmatter in ContentDetails and linkIndex.set()
 
+  // given a page, find the index of the page containing 'folder_order'
+  let indexA = -1
+  let indexB = -1
+  if (a.isFolder) {
+    indexA = a.children.findIndex(
+      (child) => !child.isFolder && child.data?.frontmatter?.folder_order !== undefined,
+    )
+  }
+  if (b.isFolder) {
+    indexB = b.children.findIndex(
+      (child) => !child.isFolder && child.data?.frontmatter?.folder_order !== undefined,
+    )
+  }
+
+  // extract order from frontmatter
+  const orderA = a.isFolder
+    ? indexA !== -1
+      ? (a.children[indexA].data?.frontmatter?.folder_order as number | undefined)
+      : undefined
+    : (a.data?.frontmatter?.order as number | undefined)
+  const orderB = b.isFolder
+    ? indexB !== -1
+      ? (b.children[indexB].data?.frontmatter?.folder_order as number | undefined)
+      : undefined
+    : (b.data?.frontmatter?.order as number | undefined)
+
+  // // method I: folders first, then files
+  // // compare orderA and orderB, those undefined will be placed at the end
+  // if ((!a.isFolder && !b.isFolder) || (a.isFolder && b.isFolder)) {
+  //   if (orderA !== undefined && orderB !== undefined) {
+  //     return orderA - orderB;
+  //   } else if (orderA !== undefined) {
+  //     return -1;
+  //   } else if (orderB !== undefined) {
+  //     return 1;
+  //   } else {
+  //     // fall back to alphabetical order
+  //     return a.displayName.localeCompare(b.displayName);
+  //   }
+  // }
+  // if (!a.isFolder && b.isFolder) {
+  //   return 1
+  // } else {
+  //   return -1
+  // }
+
+  // method II: sort folders together with files, treat folders as files
+  // compare orderA and orderB, those undefined will be placed at the end
   if (orderA !== undefined && orderB !== undefined) {
-    return orderA - orderB;
+    return orderA - orderB
   } else if (orderA !== undefined) {
-    return -1;
+    return -1
   } else if (orderB !== undefined) {
-    return 1;
+    return 1
   } else {
-    return a.displayName.localeCompare(b.displayName);
+    // fall back to alphabetical order, treat folders as files
+    return a.displayName.localeCompare(b.displayName)
   }
 }
 
@@ -49,20 +83,20 @@ export const sharedPageComponents: SharedLayout = {
   header: [],
   afterBody: [
     Component.Comments({
-      provider: 'giscus',
+      provider: "giscus",
       options: {
         // from data-repo
-        repo: 'felixnie/draftz',
+        repo: "felixnie/draftz",
         // from data-repo-id
-        repoId: 'R_kgDON9S7xw',
+        repoId: "R_kgDON9S7xw",
         // from data-category
-        category: 'Announcements',
+        category: "Announcements",
         // from data-category-id
-        categoryId: 'DIC_kwDON9S7x84CnPzm',
+        categoryId: "DIC_kwDON9S7x84CnPzm",
         // how to map pages -> discussions
         // defaults to 'url'
-        mapping: 'pathname',
-      }
+        mapping: "pathname",
+      },
     }),
   ],
   footer: Component.Footer({
