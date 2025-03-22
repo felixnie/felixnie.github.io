@@ -13,7 +13,9 @@ const config: QuartzConfig = {
     enableSPA: true,
     enablePopovers: true,
     analytics: {
-      provider: "umami", host: 'https://umami.felixnie.com', websiteId: 'e9b43ea0-1258-4ca3-9511-d4b63609c97a' 
+      provider: "umami",
+      host: "https://umami.felixnie.com",
+      websiteId: "e9b43ea0-1258-4ca3-9511-d4b63609c97a",
     },
     locale: "en-US",
     baseUrl: "draftz.felixnie.com",
@@ -24,9 +26,9 @@ const config: QuartzConfig = {
       cdnCaching: true,
       typography: {
         title: "Playwrite HU",
-        header: "Schibsted Grotesk", 
-        body: "Source Sans Pro", 
-        code: "Anonymous Pro", 
+        header: "Schibsted Grotesk",
+        body: "Source Sans Pro",
+        code: "Anonymous Pro",
       },
       colors: {
         lightMode: {
@@ -73,6 +75,12 @@ const config: QuartzConfig = {
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description(),
       Plugin.Latex({ renderEngine: "katex" }),
+      Plugin.Citations({
+        bibliographyFile: "./content/bibliography.bib",
+        suppressBibliography: false,
+        linkCitations: true,
+        csl: "apa",
+      }),
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [
