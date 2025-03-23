@@ -28,7 +28,7 @@ const config: QuartzConfig = {
         title: "Playwrite HU",
         header: "Schibsted Grotesk",
         body: "Source Sans Pro",
-        code: "Anonymous Pro",
+        code: "Sono",
       },
       colors: {
         lightMode: {

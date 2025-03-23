@@ -17,31 +17,13 @@ export const sortFn: Options["sortFn"] = (a, b) => {
   //      to find ways to retrieve folder_order and order from frontmatter
   //      we now have to include frontmatter in ContentDetails and linkIndex.set()
 
-  // given a page, find the index of the page containing 'folder_order'
-  let indexA = -1
-  let indexB = -1
-  if (a.isFolder) {
-    indexA = a.children.findIndex(
-      (child) => !child.isFolder && child.data?.frontmatter?.folder_order !== undefined,
-    )
-  }
-  if (b.isFolder) {
-    indexB = b.children.findIndex(
-      (child) => !child.isFolder && child.data?.frontmatter?.folder_order !== undefined,
-    )
-  }
-
   // extract order from frontmatter
   const orderA = a.isFolder
-    ? indexA !== -1
-      ? (a.children[indexA].data?.frontmatter?.folder_order as number | undefined)
-      : undefined
-    : (a.data?.frontmatter?.order as number | undefined)
+    ? a.data?.frontmatter?.folder_order as number | undefined
+    : a.data?.frontmatter?.order as number | undefined
   const orderB = b.isFolder
-    ? indexB !== -1
-      ? (b.children[indexB].data?.frontmatter?.folder_order as number | undefined)
-      : undefined
-    : (b.data?.frontmatter?.order as number | undefined)
+    ? b.data?.frontmatter?.folder_order as number | undefined
+    : b.data?.frontmatter?.order as number | undefined
 
   // // method I: folders first, then files
   // // compare orderA and orderB, those undefined will be placed at the end
