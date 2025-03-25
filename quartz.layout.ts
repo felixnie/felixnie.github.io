@@ -13,17 +13,17 @@ export const filterFn: Options["filterFn"] = (node) => {
   return node.slugSegment !== "tags"
 }
 export const sortFn: Options["sortFn"] = (a, b) => {
-  // mod: sort folders and files based on folder_order and order
-  //      to find ways to retrieve folder_order and order from frontmatter
+  // mod: sort folders and files based on folderOrder and noteOrder
+  //      to find ways to retrieve folderOrder and noteOrder from frontmatter
   //      we now have to include frontmatter in ContentDetails and linkIndex.set()
 
   // extract order from frontmatter
   const orderA = a.isFolder
-    ? a.data?.frontmatter?.folder_order as number | undefined
-    : a.data?.frontmatter?.order as number | undefined
+    ? a.data?.frontmatter?.folderOrder as number | undefined
+    : a.data?.frontmatter?.noteOrder as number | undefined
   const orderB = b.isFolder
-    ? b.data?.frontmatter?.folder_order as number | undefined
-    : b.data?.frontmatter?.order as number | undefined
+    ? b.data?.frontmatter?.folderOrder as number | undefined
+    : b.data?.frontmatter?.noteOrder as number | undefined
 
   // // method I: folders first, then files
   // // compare orderA and orderB, those undefined will be placed at the end
