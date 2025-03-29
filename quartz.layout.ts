@@ -86,6 +86,7 @@ export const sharedPageComponents: SharedLayout = {
       GitHub: "https://github.com/felixnie",
       Services: "https://home.felixnie.com",
       Status: "https://status.felixnie.com",
+      LinkedIn: "https://www.linkedin.com/in/hongtuo",
       CV: "https://url.felixnie.com/cv",
     },
   }),
