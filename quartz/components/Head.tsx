@@ -97,6 +97,9 @@ export default (() => {
             return resource
           }
         })}
+
+        <meta name="baidu-site-verification" content="codeva-gXqndvTeW3" />
+        <meta name="google-site-verification" content="LMncc6hEAqANGtNUJ8Ebtiz5QU6y05mPhnSWsKIj-Q4" />
       </head>
     )
   }
