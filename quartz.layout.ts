@@ -19,11 +19,11 @@ export const sortFn: Options["sortFn"] = (a, b) => {
 
   // extract order from frontmatter
   const orderA = a.isFolder
-    ? a.data?.frontmatter?.folderOrder as number | undefined
-    : a.data?.frontmatter?.noteOrder as number | undefined
+    ? (a.data?.frontmatter?.folderOrder as number | undefined)
+    : (a.data?.frontmatter?.noteOrder as number | undefined)
   const orderB = b.isFolder
-    ? b.data?.frontmatter?.folderOrder as number | undefined
-    : b.data?.frontmatter?.noteOrder as number | undefined
+    ? (b.data?.frontmatter?.folderOrder as number | undefined)
+    : (b.data?.frontmatter?.noteOrder as number | undefined)
 
   // // method I: folders first, then files
   // // compare orderA and orderB, those undefined will be placed at the end

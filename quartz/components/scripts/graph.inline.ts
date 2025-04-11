@@ -105,8 +105,8 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
   )
   const data: Map<SimpleSlug, ContentDetails> = new Map(
     [...originalData.entries()].filter(([key, value]) => {
-    return !value.tags?.includes("exclusive")
-    })
+      return !value.tags?.includes("exclusive")
+    }),
   )
 
   const links: SimpleLinkData[] = []

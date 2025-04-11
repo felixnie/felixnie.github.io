@@ -9,7 +9,12 @@ import styles from "../../styles/custom.scss"
 import popoverStyle from "../../components/styles/popover.scss"
 import { BuildCtx } from "../../util/ctx"
 import { QuartzComponent } from "../../components/types"
-import { googleFontHref, googleFontSubsetHref, joinStyles, processGoogleFonts } from "../../util/theme"
+import {
+  googleFontHref,
+  googleFontSubsetHref,
+  joinStyles,
+  processGoogleFonts,
+} from "../../util/theme"
 import { Features, transform } from "lightningcss"
 import { transform as transpile } from "esbuild"
 import { write } from "./helpers"
@@ -233,7 +238,7 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
         const theme = ctx.cfg.configuration.theme
         const response = await fetch(googleFontHref(theme))
         googleFontsStyleSheet = await response.text()
-        
+
         if (theme.typography.title) {
           const title = ctx.cfg.configuration.pageTitle
           const response = await fetch(googleFontSubsetHref(theme, title))

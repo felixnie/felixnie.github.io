@@ -50,7 +50,7 @@ export function getFontSpecificationName(spec: FontSpecification): string {
 }
 
 // mod: add title font
-type FontType = "title" | "header" | "body" | "code";
+type FontType = "title" | "header" | "body" | "code"
 
 function formatFontSpecification(type: FontType, spec: FontSpecification) {
   if (typeof spec === "string") {
