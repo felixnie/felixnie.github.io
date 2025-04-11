@@ -1,3 +1,28 @@
 @use "./base.scss";
 
 // put your custom CSS here!
+
+// mod: centering images
+article img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// mod: captioning images
+figure {
+  margin: 0;
+  > img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+ 
+figcaption {
+  text-align: center;
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  line-height: 1.3rem;
+  opacity: 0.8;
+}
