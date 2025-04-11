@@ -191,15 +191,12 @@ async function setupExplorer(currentSlug: FullSlug) {
 
       // mod: while initializing, use frontmatter state first if available
       const folderNode = trie.findNode(path.split("/"))
-      const folderNodeState = folderNode?.data?.frontmatter?.collapsed === 'true'
+      const folderNodeState = folderNode?.data?.frontmatter?.collapsed === "true"
       const defaultState = opts.folderDefaultState === "collapsed"
 
       return {
         path,
-        collapsed:
-          previousState ??
-          folderNodeState ??
-          defaultState,
+        collapsed: previousState ?? folderNodeState ?? defaultState,
       }
     })
 

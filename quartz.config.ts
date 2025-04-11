@@ -75,13 +75,14 @@ const config: QuartzConfig = {
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description(),
       Plugin.Latex({ renderEngine: "katex" }),
-      Plugin.FigureCaptions(),
       Plugin.Citations({
         bibliographyFile: "./content/bibliography.bib",
         suppressBibliography: false,
         linkCitations: true,
         csl: "apa",
       }),
+      Plugin.ImageCaptions(),
+      Plugin.ImageResize(),
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [

@@ -41,7 +41,6 @@ export default ((opts?: Partial<FolderContentOptions>) => {
         .map((node) => {
           // regular file, proceed
           if (node.data) {
-
             // mod: skip files with tag 'exclusive' in Folder pages
             if (node.data.frontmatter?.tags?.includes("exclusive")) {
               return undefined
@@ -51,7 +50,6 @@ export default ((opts?: Partial<FolderContentOptions>) => {
           }
 
           if (node.isFolder && options.showSubfolders) {
-
             // mod: stop showing any folder
             return undefined
 

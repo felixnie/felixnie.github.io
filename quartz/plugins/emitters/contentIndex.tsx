@@ -106,7 +106,6 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
       const cfg = ctx.cfg.configuration
       const linkIndex: ContentIndexMap = new Map()
       for (const [tree, file] of content) {
-        
         // mod: skip files with tag 'exclusive' while indexing
         //      affects both Search and Explorer
         if (file.data.frontmatter?.tags?.includes("exclusive")) {

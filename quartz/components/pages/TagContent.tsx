@@ -31,10 +31,11 @@ export default ((opts?: Partial<TagContentOptions>) => {
 
     const tag = simplifySlug(slug.slice("tags/".length) as FullSlug)
     const allPagesWithTag = (tag: string) =>
-      allFiles.filter((file) =>
-        // mod: skip files with tag 'exclusive' in Tag pages
-        !file.frontmatter?.tags?.includes("exclusive") &&
-        (file.frontmatter?.tags ?? []).flatMap(getAllSegmentPrefixes).includes(tag),
+      allFiles.filter(
+        (file) =>
+          // mod: skip files with tag 'exclusive' in Tag pages
+          !file.frontmatter?.tags?.includes("exclusive") &&
+          (file.frontmatter?.tags ?? []).flatMap(getAllSegmentPrefixes).includes(tag),
       )
 
     const content = (
