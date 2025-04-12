@@ -1,6 +1,9 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
 
+// mod: define Tagpage and FolderPage functions
+// import { sortFn } from "./quartz.layout"
+
 /**
  * Quartz 4 Configuration
  *
@@ -81,7 +84,7 @@ const config: QuartzConfig = {
         linkCitations: true,
         csl: "apa",
       }),
-      Plugin.ImageResize(),
+      // Plugin.ImageResize(),
       Plugin.ImageCaptions(),
       Plugin.ImageLinks(),
     ],

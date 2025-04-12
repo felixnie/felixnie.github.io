@@ -5,7 +5,8 @@
 // mod: centering images
 article img {
   display: block;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 // mod: captioning images
@@ -18,6 +19,7 @@ figure {
   }
 }
 
+// mod: styling image captions
 figcaption {
   text-align: center;
   margin-top: 0.25rem;
