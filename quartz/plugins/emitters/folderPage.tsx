@@ -97,7 +97,6 @@ function _getFolders(slug: FullSlug): SimpleSlug[] {
     folderName = path.dirname(folderName ?? "") as SimpleSlug
     parentFolderNames.push(folderName)
   }
-  console.log("Parent folders:", parentFolderNames)
   return parentFolderNames
 }
 

@@ -84,7 +84,7 @@ const config: QuartzConfig = {
         linkCitations: true,
         csl: "apa",
       }),
-      // Plugin.ImageResize(),
+      Plugin.ImageResize(),
       Plugin.ImageCaptions(),
       Plugin.ImageLinks(),
     ],
