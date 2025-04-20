@@ -15,6 +15,8 @@
     width: 20px;
     height: 20px;
     top: calc(50% - 10px);
+    // mod: add fill
+    fill: var(--darkgray);
     stroke: var(--darkgray);
     transition: opacity 0.1s ease;
   }

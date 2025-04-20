@@ -108,6 +108,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
+    Component.ReaderMode(),
     Component.Explorer({
       folderDefaultState: "open",
       folderClickBehavior: "collapse",
@@ -132,6 +133,7 @@ export const defaultListPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
+    Component.ReaderMode(),
     Component.Explorer({
       folderDefaultState: "open",
       folderClickBehavior: "collapse",
