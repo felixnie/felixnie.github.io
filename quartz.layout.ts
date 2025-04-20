@@ -68,7 +68,7 @@ export const sharedPageComponents: SharedLayout = {
       provider: "giscus",
       options: {
         // from data-repo
-        repo: "felixnie/draftz",
+        repo: "felixnie/felixnie.github.io",
         // from data-repo-id
         repoId: "R_kgDON9S7xw",
         // from data-category
