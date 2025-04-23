@@ -17,13 +17,15 @@ echo "Current ~/.ssh/config content:"
 cat ~/.ssh/config
 
 echo "Testing SSH connection..."
-ssh_output=$(ssh -T git@github.com 2>&1)
+ssh_output=$(ssh -vvvT git@github.com 2>&1)
 ssh_exit_code=$?
 
 if [ $ssh_exit_code -ne 0 ]; then
-  echo "SSH connection failed with error:"
+  echo "SSH connection failed with verbose error:"
   echo "$ssh_output"
   exit $ssh_exit_code
+else
+  echo "SSH connection successful."
 fi
 
 echo "Updating submodules..."
