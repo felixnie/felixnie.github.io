@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set +e  # 不自动退出，允许捕获错误并打印完整信息
+set +e # do not exit automatically, printing details
 
 echo "==== 1. Validating GIT_DEPLOY_KEY ===="
 if [ -z "$GIT_DEPLOY_KEY" ]; then
@@ -31,12 +31,9 @@ fi
 echo "==== 5. SSH Key List ===="
 ssh-add -l
 
-echo "==== 6. BEFORE SSH CONNECTION TEST ===="
-
-echo "==== 7. Testing SSH Connection to GitHub ===="
+echo "==== 6. Testing SSH Connection to GitHub ===="
 ssh_output=$(ssh -v -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -T git@github.com 2>&1)
 ssh_exit_code=$?
-echo "==== SSH Connection Output ===="
 echo "$ssh_output"
 echo "SSH connection exit code: $ssh_exit_code"
 
@@ -46,7 +43,7 @@ else
   echo "⚠️ SSH connection might have issues."
 fi
 
-echo "==== 8. Updating Git Submodules ===="
+echo "==== 7. Updating Git Submodules ===="
 GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" git submodule sync
 GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" git submodule update --init --recursive
 submodule_exit_code=$?
@@ -58,14 +55,14 @@ else
   echo "✅ Submodules updated successfully."
 fi
 
-echo "==== 9. Installing NPM Dependencies ===="
+echo "==== 8. Installing NPM Dependencies ===="
 npm install
 npm_exit_code=$?
 echo "npm install exit code: $npm_exit_code"
 
-echo "==== 10. Running Quartz Build ===="
+echo "==== 9. Running Quartz Build ===="
 npx quartz build
 quartz_exit_code=$?
 echo "quartz build exit code: $quartz_exit_code"
 
-echo "==== 11. Script Completed ===="
+echo "==== 🎉 Script Completed ===="
