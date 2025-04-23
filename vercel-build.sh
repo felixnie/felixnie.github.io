@@ -17,7 +17,7 @@ echo "Current ~/.ssh/config content:"
 cat ~/.ssh/config
 
 echo "Testing SSH connection..."
-ssh_output=$(ssh -vvvT git@github.com 2>&1)
+ssh_output=$(ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -T git@github.com 2>&1)
 ssh_exit_code=$?
 
 if [ $ssh_exit_code -ne 0 ]; then
@@ -29,7 +29,7 @@ else
 fi
 
 echo "Updating submodules..."
-git submodule update --init --recursive || { echo "Submodule update failed"; exit 1; }
+GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" git submodule update --init --recursive || { echo "Submodule update failed"; exit 1; }
 
 npm install
 npx quartz build
