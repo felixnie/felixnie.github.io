@@ -31,14 +31,17 @@ echo "==== SSH Key List in Agent ===="
 ssh-add -l
 
 echo "==== Testing SSH Connection to GitHub ===="
-ssh_output=$(ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -T git@github.com 2>&1)
+ssh_output=$(ssh -v -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -T git@github.com 2>&1)
 ssh_exit_code=$?
-if [ $ssh_exit_code -ne 0 ]; then
-  echo "❌ SSH connection failed:"
-  echo "$ssh_output"
-  exit $ssh_exit_code
-else
+
+echo "==== SSH Connection Output ===="
+echo "$ssh_output"
+
+if echo "$ssh_output" | grep -q "successfully authenticated"; then
   echo "✅ SSH connection successful."
+else
+  echo "⚠️ SSH connection might have issues. Exit code: $ssh_exit_code"
+  exit $ssh_exit_code
 fi
 
 echo "==== Updating Git Submodules ===="
