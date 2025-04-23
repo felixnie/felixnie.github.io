@@ -68,7 +68,7 @@ export const sharedPageComponents: SharedLayout = {
       provider: "giscus",
       options: {
         // from data-repo
-        repo: "felixnie/felixnie.github.io",
+        repo: "felixnie/draftz",
         // from data-repo-id
         repoId: "R_kgDON9S7xw",
         // from data-category
@@ -113,7 +113,7 @@ export const defaultContentPageLayout: PageLayout = {
           grow: true,
         },
         { Component: Component.Darkmode() },
-        { Component: Component.ReaderMode() },
+        { Component: Component.DesktopOnly(Component.ReaderMode()) },
       ],
     }),
     Component.Explorer({
