@@ -5,6 +5,14 @@ import { googleFontHref, googleFontSubsetHref } from "../util/theme"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { unescapeHTML } from "../util/escape"
 import { CustomOgImagesEmitterName } from "../plugins/emitters/ogImage"
+// import { version } from "../../package.json"
+import { injectSpeedInsights } from '@vercel/speed-insights'
+import { inject } from "@vercel/analytics"
+
+// mod: Vercel Speed Insights and Analytics
+injectSpeedInsights()
+inject()
+
 export default (() => {
   const Head: QuartzComponent = ({
     cfg,
