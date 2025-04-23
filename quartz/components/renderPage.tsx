@@ -9,8 +9,6 @@ import { visit } from "unist-util-visit"
 import { Root, Element, ElementContent } from "hast"
 import { GlobalConfiguration } from "../cfg"
 import { i18n } from "../i18n"
-// mod: Vercel Speed Insights
-import { SpeedInsights } from '@vercel/speed-insights/next';
 
 interface RenderComponents {
   head: QuartzComponent
@@ -263,8 +261,6 @@ export function renderPage(
             </div>
             {RightComponent}
             <Footer {...componentData} />
-            {/* mod: Vercel Speed Insights */}
-            <SpeedInsights />
           </Body>
         </div>
       </body>
