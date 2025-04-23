@@ -1,6 +1,3 @@
 {
   "cleanUrls": true,
-  "scripts": {
-    "vercel-build": "bash ./vercel-build.sh"
-  }
 }
