@@ -1,9 +1,10 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 
-// mod: Vercel Speed Insights
-import { injectSpeedInsights } from '@vercel/speed-insights'
+// mod: Vercel Speed Insights and Analytics
 import { QuartzComponent } from "./quartz/components/types"
+import { injectSpeedInsights } from '@vercel/speed-insights'
+import { inject } from "@vercel/analytics"
 
 // mod: define Explorer functions
 import { Options } from "./quartz/components/Explorer"
@@ -84,12 +85,21 @@ export const sharedPageComponents: SharedLayout = {
         mapping: "pathname",
       },
     }),
+    // mod: Vercel Speed Insights
     (() => {
       const SpeedInsights: QuartzComponent = () => {
         injectSpeedInsights()
         return null
       }
       return SpeedInsights
+    })(),
+    // mod: Vercel Analytics
+    (() => {
+      const Analytics: QuartzComponent = () => {
+        inject()
+        return null
+      }
+      return Analytics
     })()
   ],
   footer: Component.Footer({
