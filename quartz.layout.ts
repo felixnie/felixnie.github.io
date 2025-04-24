@@ -113,7 +113,13 @@ export const defaultContentPageLayout: PageLayout = {
           grow: true,
         },
         { Component: Component.Darkmode() },
-        { Component: Component.DesktopOnly(Component.ReaderMode()) },
+        { Component: Component.MobileOnly(Component.ReaderMode()) },
+        { 
+          Component: Component.ConditionalRender({
+            component: Component.AlternativePage(),
+            condition: (page) => !!page.fileData.frontmatter?.alternativePage,
+          })
+        },
       ],
     }),
     Component.Explorer({
