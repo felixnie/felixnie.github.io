@@ -1,6 +1,6 @@
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import style from "./styles/backlinks.scss"
-import { resolveRelative, simplifySlug } from "../util/path"
+import { resolveRelative, simplifySlug, slugifyFilePath, FilePath } from "../util/path"
 import { i18n } from "../i18n"
 import { classNames } from "../util/lang"
 import OverflowListFactory from "./OverflowList"
@@ -23,7 +23,13 @@ export default ((opts?: Partial<BacklinksOptions>) => {
     displayClass,
     cfg,
   }: QuartzComponentProps) => {
-    const slug = simplifySlug(fileData.slug!)
+    // const slug = simplifySlug(fileData.slug!)
+
+    // mod: replaceBacklinkWith the backlinkSlug if it exists
+    const backlinkPath = fileData.frontmatter?.replaceBacklinkWith
+    const backlinkSlug = backlinkPath ? slugifyFilePath(backlinkPath as FilePath) : undefined
+    const slug = backlinkSlug ? simplifySlug(backlinkSlug) : simplifySlug(fileData.slug!)
+
     const backlinkFiles = allFiles.filter(
       (file) =>
         file.links?.includes(slug) &&
