@@ -17,7 +17,7 @@ import {
 import { Text, Graphics, Application, Container, Circle } from "pixi.js"
 import { Group as TweenGroup, Tween as Tweened } from "@tweenjs/tween.js"
 import { registerEscapeHandler, removeAllChildren } from "./util"
-import { FullSlug, SimpleSlug, getFullSlug, resolveRelative, simplifySlug } from "../../util/path"
+import { FilePath, FullSlug, SimpleSlug, getFullSlug, resolveRelative, simplifySlug, slugifyFilePath } from "../../util/path"
 import { D3Config } from "../Graph"
 
 type GraphicsInfo = {
@@ -72,8 +72,9 @@ type TweenNode = {
 const getGraphSlug = async (slug: FullSlug) => {
   const allData = await fetchData
   const pageData = allData[slug]
-  const graphSlug = pageData?.frontmatter?.replaceGraphWith
-  return graphSlug ? simplifySlug(graphSlug as FullSlug) : undefined
+  const graphPath = pageData?.frontmatter?.replaceGraphWith
+  const graphSlug = graphPath ? slugifyFilePath(graphPath as FilePath) : undefined
+  return graphSlug
 }
 
 async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
@@ -81,7 +82,7 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
 
   // mod: replaceGraphWith the graphSlug if it exists
   const graphSlug = await getGraphSlug(fullSlug)
-  const slug = graphSlug ? graphSlug : simplifySlug(fullSlug)
+  const slug = graphSlug ? simplifySlug(graphSlug) : simplifySlug(fullSlug)
 
   const visited = getVisited()
   removeAllChildren(graph)
