@@ -68,8 +68,21 @@ type TweenNode = {
   stop: () => void
 }
 
+// mod: replaceGraphWith the graphSlug if it exists
+const getGraphSlug = async (slug: FullSlug) => {
+  const allData = await fetchData
+  const pageData = allData[slug]
+  const graphSlug = pageData?.frontmatter?.replaceGraphWith
+  return graphSlug ? simplifySlug(graphSlug as FullSlug) : undefined
+}
+
 async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
-  const slug = simplifySlug(fullSlug)
+  // const slug = simplifySlug(fullSlug)
+
+  // mod: replaceGraphWith the graphSlug if it exists
+  const graphSlug = await getGraphSlug(fullSlug)
+  const slug = graphSlug ? graphSlug : simplifySlug(fullSlug)
+
   const visited = getVisited()
   removeAllChildren(graph)
 
