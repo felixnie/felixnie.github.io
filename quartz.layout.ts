@@ -107,6 +107,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
     Component.Flex({
+      gap: "0",
       components: [
         {
           Component: Component.Search(),
