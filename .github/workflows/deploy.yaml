@@ -1,19 +1,19 @@
 name: Deploy Quartz site to GitHub Pages
- 
+
 on:
   push:
     branches:
       - v4
- 
+
 permissions:
   contents: read
   pages: write
   id-token: write
- 
+
 concurrency:
   group: "pages"
   cancel-in-progress: false
- 
+
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -23,7 +23,7 @@ jobs:
           fetch-depth: 0 # Fetch all history for git info
           submodules: recursive # mod: submodules
           ssh-key: ${{ secrets.GIT_DEPLOY_KEY }} # mod: ssh key
-          persist-credentials: false  # mod: disable HTTPS token
+          persist-credentials: false # mod: disable HTTPS token
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -35,7 +35,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: public
- 
+
   deploy:
     needs: build
     environment:
