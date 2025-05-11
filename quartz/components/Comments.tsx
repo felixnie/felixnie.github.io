@@ -14,6 +14,7 @@ type Options = {
     lightTheme?: string
     darkTheme?: string
     mapping?: "url" | "title" | "og:title" | "specific" | "number" | "pathname"
+    term?: string
     strict?: boolean
     reactionsEnabled?: boolean
     inputPosition?: "top" | "bottom"
@@ -42,6 +43,7 @@ export default ((opts: Options) => {
         data-category={opts.options.category}
         data-category-id={opts.options.categoryId}
         data-mapping={opts.options.mapping ?? "url"}
+        data-term={opts.options.term ?? ""}
         data-strict={boolToStringBool(opts.options.strict ?? true)}
         data-reactions-enabled={boolToStringBool(opts.options.reactionsEnabled ?? true)}
         data-input-position={opts.options.inputPosition ?? "bottom"}

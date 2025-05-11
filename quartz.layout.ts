@@ -77,7 +77,8 @@ export const sharedPageComponents: SharedLayout = {
         categoryId: "DIC_kwDON9S7x84CnPzm",
         // how to map pages -> discussions
         // defaults to 'url'
-        mapping: "pathname",
+        mapping: "specific",
+        term: "giscus-term",
       },
     }),
   ],
