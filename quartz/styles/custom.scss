@@ -27,3 +27,12 @@ figcaption {
   line-height: 1.3rem;
   opacity: 0.8;
 }
+
+// mod: temporary fix for Flex gaps
+button.darkmode {
+  margin-left: 1rem;
+}
+
+button.readermode {
+  margin-left: 1rem;
+}
