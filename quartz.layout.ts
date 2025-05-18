@@ -78,7 +78,7 @@ export const sharedPageComponents: SharedLayout = {
         // how to map pages -> discussions
         // defaults to 'url'
         mapping: "specific",
-        term: "giscus-term",
+        term: "giscus-title",
       },
     }),
   ],

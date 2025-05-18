@@ -17,7 +17,7 @@ const changeTheme = (e: CustomEventMap["themechange"]) => {
         },
       },
     },
-    "https://giscus.app",
+    "https://giscus.felixnie.com",
   )
 }
 
@@ -37,9 +37,9 @@ const getThemeName = (theme: string) => {
 const getThemeUrl = (theme: string) => {
   const giscusContainer = document.querySelector(".giscus") as GiscusElement
   if (!giscusContainer) {
-    return `https://giscus.app/themes/${theme}.css`
+    return `https://giscus.felixnie.com/themes/${theme}.css`
   }
-  return `${giscusContainer.dataset.themeUrl ?? "https://giscus.app/themes"}/${theme}.css`
+  return `${giscusContainer.dataset.themeUrl ?? "https://giscus.felixnie.com/themes"}/${theme}.css`
 }
 
 type GiscusElement = Omit<HTMLElement, "dataset"> & {
@@ -65,7 +65,7 @@ document.addEventListener("nav", () => {
   }
 
   const giscusScript = document.createElement("script")
-  giscusScript.src = "https://giscus.app/client.js"
+  giscusScript.src = "https://giscus.felixnie.com/client.js"
   giscusScript.async = true
   giscusScript.crossOrigin = "anonymous"
   giscusScript.setAttribute("data-loading", "lazy")

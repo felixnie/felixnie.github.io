@@ -40,7 +40,7 @@ export default (() => {
     return (
       <head>
         <title>{title}</title>
-        <meta name="giscus-term" content="/path/to/page" />
+        <meta name="giscus-title" content="/path/to/page" />
         <meta charSet="utf-8" />
         {cfg.theme.cdnCaching && cfg.theme.fontOrigin === "googleFonts" && (
           <>
