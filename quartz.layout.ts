@@ -67,18 +67,12 @@ export const sharedPageComponents: SharedLayout = {
     Component.Comments({
       provider: "giscus",
       options: {
-        // from data-repo
         repo: "felixnie/draftz",
-        // from data-repo-id
         repoId: "R_kgDON9S7xw",
-        // from data-category
         category: "Announcements",
-        // from data-category-id
         categoryId: "DIC_kwDON9S7x84CnPzm",
-        // how to map pages -> discussions
-        // defaults to 'url'
         mapping: "specific",
-        term: "giscus-title",
+        strict: false,
       },
     }),
   ],

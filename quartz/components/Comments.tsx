@@ -14,7 +14,6 @@ type Options = {
     lightTheme?: string
     darkTheme?: string
     mapping?: "url" | "title" | "og:title" | "specific" | "number" | "pathname"
-    term?: string
     strict?: boolean
     reactionsEnabled?: boolean
     inputPosition?: "top" | "bottom"
@@ -35,6 +34,19 @@ export default ((opts: Options) => {
       return <></>
     }
 
+    // mod: remove i18n prefix
+    const removeLangPrefix = (slug: string): string => {
+      const langPrefixes = ['zh-cn', 'zh-tw']
+      for (const prefix of langPrefixes) {
+        if (slug.startsWith(`${prefix}/`)) {
+          return slug.slice(prefix.length + 1)
+        }
+      }
+      return slug
+    }
+    const newSlug = removeLangPrefix(fileData.slug ?? 'Untitled')
+    // console.log(fileData.slug, newSlug)
+
     return (
       <div
         class={classNames(displayClass, "giscus")}
@@ -42,8 +54,8 @@ export default ((opts: Options) => {
         data-repo-id={opts.options.repoId}
         data-category={opts.options.category}
         data-category-id={opts.options.categoryId}
-        data-mapping={opts.options.mapping ?? "url"}
-        data-term={fileData.slug ? fileData.slug as string : "test"}
+        data-mapping={opts.options.mapping ?? "pathname"}
+        data-term={newSlug}
         data-strict={boolToStringBool(opts.options.strict ?? true)}
         data-reactions-enabled={boolToStringBool(opts.options.reactionsEnabled ?? true)}
         data-input-position={opts.options.inputPosition ?? "bottom"}
