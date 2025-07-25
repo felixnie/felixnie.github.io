@@ -70,7 +70,8 @@ document.addEventListener("nav", () => {
   giscusScript.src = "https://giscus.felixnie.com/client.js"
   giscusScript.async = true
   giscusScript.crossOrigin = "anonymous"
-  giscusScript.setAttribute("data-loading", "lazy")
+  // mod: disable lazy loading
+  // giscusScript.setAttribute("data-loading", "lazy")
   giscusScript.setAttribute("data-emit-metadata", "0")
   giscusScript.setAttribute("data-repo", giscusContainer.dataset.repo)
   giscusScript.setAttribute("data-repo-id", giscusContainer.dataset.repoId)
