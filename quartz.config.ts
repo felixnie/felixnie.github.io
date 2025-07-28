@@ -18,7 +18,7 @@ const config: QuartzConfig = {
     analytics: {
       provider: "umami",
       host: "https://umami.felixnie.com",
-      websiteId: "e9b43ea0-1258-4ca3-9511-d4b63609c97a",
+      websiteId: "1d505c94-9b40-4d06-9de7-cbe82add71ad",
     },
     locale: "en-US",
     baseUrl: "draftz.felixnie.com",
