@@ -24,7 +24,7 @@ jobs:
           submodules: recursive # mod: submodules
           ssh-key: ${{ secrets.GIT_DEPLOY_KEY }} # mod: ssh key
           persist-credentials: false # mod: disable HTTPS token
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         with:
           node-version: 22
       - name: Install Dependencies
