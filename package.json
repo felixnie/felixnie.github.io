@@ -62,7 +62,7 @@
     "mdast-util-to-string": "^4.0.0",
     "micromorph": "^0.4.5",
     "minimatch": "^10.1.1",
-    "pixi.js": "^8.14.3",
+    "pixi.js": "^8.15.0",
     "preact": "^10.28.1",
     "preact-render-to-string": "^6.6.5",
     "pretty-bytes": "^7.1.0",
@@ -98,7 +98,7 @@
     "unist-util-visit": "^5.0.0",
     "vfile": "^6.0.3",
     "workerpool": "^10.0.1",
-    "ws": "^8.18.3",
+    "ws": "^8.19.0",
     "yargs": "^18.0.0"
   },
   "devDependencies": {
