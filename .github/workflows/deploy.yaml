@@ -18,13 +18,13 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0 # Fetch all history for git info
           submodules: recursive # mod: submodules
           ssh-key: ${{ secrets.GIT_DEPLOY_KEY }} # mod: ssh key
           persist-credentials: false # mod: disable HTTPS token
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
       - name: Install Dependencies
